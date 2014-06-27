@@ -27,7 +27,7 @@ group :development,:test do
   gem 'sqlite3'
   
   #Use thin as the server as mongrel is outdated with Ruby v1.9.3
-  gem 'thin'
+  #gem 'thin'
 
 end
 group :test do
