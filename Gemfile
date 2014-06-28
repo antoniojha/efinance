@@ -12,7 +12,7 @@ gem 'faker'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails'
 
 
 # Install library to use Yellow Fade Technique to highlight ajax change
