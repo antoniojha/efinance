@@ -1,2 +1,0 @@
-class InvestmentPlansController < ApplicationController
-end

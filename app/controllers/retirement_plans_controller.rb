@@ -1,2 +1,0 @@
-class RetirementPlansController < ApplicationController
-end
