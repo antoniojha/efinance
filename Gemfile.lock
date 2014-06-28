@@ -184,7 +184,7 @@ DEPENDENCIES
   jquery-ui-rails
   paperclip
   pg
-  rails (= 4.0.2)
+  rails
   rails_12factor
   rconsole (~> 0.1.0)
   rspec-rails (= 2.13.1)
