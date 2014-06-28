@@ -1,0 +1,48 @@
+<%= form_for @spending, :html=>{:multipart=>true} do |f| %>
+  <% if @spending.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@spending.errors.count, "error") %> prohibited this spending from being saved:</h2>
+
+      <ul>
+      	<% @spending.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      	<% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  	<div class="field">
+    	<%= f.label :title %><br>
+    	<%= f.text_field :title, :class=>"form-control" %>
+  	</div>
+  	<div class="field">
+		<%= f.label "Category:"%>
+		<%= f.select :category, Order::BUDGET_TYPES, {prompt: 'Select a budget type'}, {:class=>'form-control'}%>
+  	</div>
+  	<div class="field">
+    	<%= f.label :description %><br>
+    	<%= f.text_area :description, :class=>"form-control" %>
+  	</div>
+  	<div class="field">
+    	<%= f.label "transaction date:" %><br>
+    	<% if @spending.transaction_date%>
+ 			<%= f.text_field :transaction_date, :class=>"transaction_date form-control", :value=>@spending.transaction_date.strftime('%m/%d/%Y')%>
+ 		<%else%>
+ 			<%= f.text_field :transaction_date, :class=>"transaction_date form-control"%>
+ 		<%end%>
+ 	</div>
+  	<div class="field">
+  		<%= f.label "Upload Receipt"%><br>
+  		<%= f.file_field :picture%>
+  	</div>
+ 
+  		<%= f.label :price %><br>
+  	<div class="input-group">
+  		<span class="input-group-addon">$</span> 
+	    	<%= f.text_field :price, :class=>"form-control" %>
+  	</div>
+  	<div class="actions">
+    	<%= f.submit %>
+  	</div>
+
+<% end %>

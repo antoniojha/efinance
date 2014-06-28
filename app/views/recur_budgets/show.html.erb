@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @budget.title %>
+</p>
+
+<p>
+  <strong>Category:</strong><br>
+  <%= @budget.category%><br>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @budget.price %>
+</p>
+
+<p>
+  <strong>Transaction date:</strong>
+  <%= @budget.transaction_date %>
+</p>
+
+<%= link_to 'Edit', edit_budget_path(@budget) %> |
+<%= link_to 'Back', budgets_path %>

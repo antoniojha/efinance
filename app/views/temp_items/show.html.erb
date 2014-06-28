@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+<h2> Goals that were setup in session <%= params[:id]%>
+<ul>
+	<% @temp_item.finance_items.each do |item|%>
+	<li><%= item.goal.goal%></li>
+	<% end%>
+</ul>	
+<%= link_to 'Edit', edit_temp_item_path(@temp_item) %> |
+<%= link_to 'Back', temp_items_path %><br>
+<%= button_to 'Cancel the Planning Session', @temp_item, method: :delete, data: {confirm: 'Are you sure?'}%>
