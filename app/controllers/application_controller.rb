@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     end
     def authorize
       unless User.find_by(id: session[:user_id])
-        redirect_to login_url, notice: "Please log in"
+     #   redirect_to login_url, notice: "Please log in"
       end
     end
 
@@ -29,6 +29,6 @@ class ApplicationController < ActionController::Base
     def invalid_page
       flash[:notice]= "Accessing an invalid page!"
       logger.error "Attempt to access invalid page"
-      redirect_to profile_url(session[:user_id])
+   #   redirect_to profile_url(session[:user_id])
     end
 end
