@@ -11,6 +11,33 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.ui.effect-blind
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap
 //= require_tree .
+//= require_tree ../../../vendor/assets/javascripts/.
+
+$(document).ready(function() {
+	$('#budget_begin_or_end_of_month_1').click(function(){
+		$('#budget_transaction_date').attr('disabled','disabled');
+	})
+	$('#budget_begin_or_end_of_month_2').click(function(){
+		$('#budget_transaction_date').attr('disabled','disabled');
+	})	
+	$('#reset').click(function(){
+		$('#budget_transaction_date').removeAttr('disabled');
+	})	
+	$(function(){
+		$('input.transaction_date').initialized=true;
+		$('input.transaction_date').datepicker({ dateFormat: 'mm/dd/yy' });
+	});
+});
+
+/*$(document).ready(function(){
+	alert("it's ready");
+});
+$(window).bind('beforeunload', function(event) {    
+
+    return false;
+});*/
