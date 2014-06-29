@@ -4,24 +4,24 @@ WebFinance3::Application.routes.draw do
  # resources :spendings
 
  # get "admin"=>'admin#index'
- # controller :sessions do
- #   get 'login'=> :new
- #   post 'login'=> :create
- #   delete 'logout'=> :destroy
- # end
+ controller :sessions do
+    get 'login'=> :new
+    post 'login'=> :create
+    delete 'logout'=> :destroy
+ end
   
- # get "overview"=>"profiles#new"
- # controller :profiles do
- #   get 'overview'=> :new
- #   post 'overview'=> :create
- # end
+ #get "overview"=>"profiles#new"
+ controller :profiles do
+   get 'overview'=> :new
+   post 'overview'=> :create
+ end
   root 'users#new'
  # resources :search_spending
   resources :users
 
  # resources :finance_plans
 
- # resources :profiles
+ resources :profiles
   
  # resources :finance_items
 
