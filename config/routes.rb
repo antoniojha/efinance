@@ -1,7 +1,7 @@
 WebFinance3::Application.routes.draw do
   # You can have the root of your site routed with "root"
 
- # resources :spendings
+ resources :spendings
 
  # get "admin"=>'admin#index'
  controller :sessions do
