@@ -1,0 +1,2 @@
+class RetirementPlansController < ApplicationController
+end

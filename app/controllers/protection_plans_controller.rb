@@ -1,0 +1,2 @@
+class ProtectionPlansController < ApplicationController
+end

@@ -1,0 +1,15 @@
+	<div class="btn-group">
+		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+		<span class="badge"><%=RecurBudget.where(:temp_budget_plan_id =>@temp_budget_plan.id).count%></span>	
+		Saved Recurring Costs
+		<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">	
+		    <% @budgets= RecurBudget.where(:temp_budget_plan_id =>@temp_budget_plan.id).all%>  
+
+			<% @budgets.each do |b|%>
+				<%@link=b.title%>
+				<li id=<%=@link%>><%= link_to @link, recur_budget_path(b), :method=> :get%></li>
+			<%end%>
+		</ul>
+	</div>

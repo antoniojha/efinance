@@ -1,0 +1,9 @@
+
+$("#error").html("<%= escape_javascript render partial: "error" %>");
+$("#display_budgets").html("<%= escape_javascript render partial: "display_budgets" %>");
+$("#display_saved_recur_costs").html("<%= escape_javascript render partial: "display_saved_recur_costs" %>");
+
+$("#current_item").css({'background-color':'#0040FF'}).
+animate({'background-color':'#FFF'},1000);
+$("#current_item_error").css({'background-color':'#FF0000'}).
+animate({'background-color':'#FFF'},1000);

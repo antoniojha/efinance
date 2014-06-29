@@ -1,0 +1,11 @@
+<% if flash[:error]%>
+	<% errors=flash[:error]%>
+	<div id="error_explanation">
+		<h2><%= pluralize(errors.count, "error")%> prohibited this cost from being saved: </h2>
+		<ul>
+			<%errors.each do |msg|%>
+			<li><%= msg%></li>
+			<%end%>		
+		</ul>
+	</div>
+<%end%>

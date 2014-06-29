@@ -29,13 +29,13 @@
   		 		<nav>
           			<ul class="navbar-nav nav pull-right">
             		<% if User.find_by(id: session[:user_id])%>
-            		<li><%= link_to 'Home', '#'%></li>
+            		<li><%= link_to 'Home', profile_url(session[:user_id])%></li>
            		 	<% end %>
             		<li><a href="#">Quick Demo</a></li>
             		<% if User.find_by(id: session[:user_id])%>
-            		<li><%= link_to 'Sign Out', '#', method: :delete%></li>
+            		<li><%= link_to 'Sign Out', logout_url, method: :delete%></li>
             		<% else %>
-            		<li><%= link_to 'Sign In', '#'%></li>
+            		<li><%= link_to 'Sign In', login_url%></li>
             		<% end %>
           			</ul>
           			</nav>

@@ -1,0 +1,11 @@
+
+<h1> Starts Financial Planning Now!</h1>
+<p> Set up your financial goal below: </p>
+
+<% finance_goals=[["Set up a Protection",1],["Emergency Fund",2],["College Fund",3],["Plan for Retirement",4],["Investment",5]]%>
+<%= form_tag finance_items_path do %>
+	<%= select_tag(:goal_id, options_for_select(finance_goals))%><br><br>
+	<%= submit_tag 'Lets Get Started!', {class:"btn btn-primary"}%>
+<%end%>
+
+

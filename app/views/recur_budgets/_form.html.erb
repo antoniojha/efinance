@@ -1,0 +1,47 @@
+<%= form_for (@budget), :remote => true do |f|%>
+<table id="budget_form_table">
+	<tr>
+		<td><%=f.label "Title:"%></td>
+		<td><%= f.text_field :title, class: "form-control"%></td>
+	</tr>
+	<tr>
+		<td><%=f.label "Price:"%></td>
+		<td><div class="input-group"><span class="input-group-addon">$</span><%= f.text_field :price, class: "form-control"%></div></td>
+	</tr>
+	<tr>
+		<td><%= f.label "Category:"%></td>
+		<td><%= f.select :category, Order::BUDGET_TYPES, {prompt: 'Select a budget type'}, {:class=>'form-control'}%></td>
+	</tr>	
+	<tr>
+		<% x=@temp_budget_plan.recur_period %>
+		<td id="budget_form_row"> 
+		<% if x==1%>
+		<%=f.label "Budget deducts every year from:"%>
+		<% elsif x==2%>
+		<%=f.label "Budget deducts every month from:"%>
+		<% elsif x==3%>
+		<%=f.label "Budget deducts every two weeks from:"%>
+		<% elsif x==4%>
+		<%=f.label "Budget deducts every week from:"%>
+		<% elsif x==5%>
+		<%=f.label "Budget deducts every day from:"%>
+		<%end%> </td>
+		<td><%= f.select :recur_deduction_date, Order::DAY_OF_WEEK,{}, {:id=> 'budget_transaction_date', :class=>'form-control'}%></td>
+		<% if x==2%>
+		<tr>
+			<td> <%= f.label "Or/"%></td>
+		</tr>
+		<tr>
+			<td><%=f.label "Budget deduct at:"%></td>
+			<td><%=f.label "Beginning of month"%><%= f.radio_button :begin_or_end_of_month, 1%></td>
+			<td><%=f.label "End of month"%><%= f.radio_button :begin_or_end_of_month, 2%></td>
+		</tr>
+		<%end%>
+	</tr>
+	
+	<tr>
+		<td><%= f.submit 'Add Recur Cost', :class=> 'btn btn-success'%></td>
+		<td><%= button_tag 'reset', :id=>'reset',:type=>'reset', :class=>'btn btn-success'%>
+	</tr>		
+</table>
+<%end%>

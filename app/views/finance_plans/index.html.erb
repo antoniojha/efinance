@@ -1,0 +1,12 @@
+<h1>Listing finance_plans</h1>
+
+	<div class="list-group">
+		<% if @saved_budget_plan%>
+			<% if (@saved_budget_plan.finished ==true)%>
+				<%= link_to "Saved Budget Plan", edit_temp_budget_plan_url(@saved_budget_plan), {:class=>"list-group-item" }%>
+			<% else%>
+				<%= link_to "Unfinished Budget Plan", edit_temp_budget_plan_url(@saved_budget_plan), {:class=>"list-group-item" }%>
+			<% end%>
+		<% end %>
+	</div>
+	
