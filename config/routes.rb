@@ -15,7 +15,7 @@ WebFinance3::Application.routes.draw do
    get 'overview'=> :new
    post 'overview'=> :create
  end
-  root 'users#new'
+  root 'sessions#new'
  # resources :search_spending
   resources :users
 
