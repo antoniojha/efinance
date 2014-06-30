@@ -1,10 +1,10 @@
 class ProfilesController < ApplicationController
   before_action :set_budget, only: [:show, :destroy, :edit, :update]
-  #before_action :personal_page, only:[:show]
+  before_action :personal_page, only:[:show]
   
   def personal_page
     if params[:id]
-      if (params[:id]!=session[:user_id])
+      unless (params[:id]==session[:user_id])
         redirect_to login_url
       end
     end
