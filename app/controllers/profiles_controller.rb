@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   
   def personal_page
     if params[:id]
-      if (params[:id]!=sessions[:user_id])
+      if (params[:id]!=session[:user_id])
         redirect_to login_url
       end
     end
