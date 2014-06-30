@@ -6,8 +6,8 @@ class ProfilesController < ApplicationController
     if params[:id]
       x=params[:id]
       y=session[:user_id]
-      unless (x==y)
-        redirect_to login_url
+      if (x!=y)
+       # redirect_to login_url
       end
     end
   end
