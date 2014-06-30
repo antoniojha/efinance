@@ -4,9 +4,8 @@ class ProfilesController < ApplicationController
   
   def personal_page
     if params[:id]
-      x=params[:id]
-      y=session[:user_id]
-      if (x!=y)
+      temp_user=User.find(params[:id])
+      if (temp_user.id!=session[:user_id])
         redirect_to profile_url(session[:user_id])
       end
     end
