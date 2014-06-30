@@ -1,5 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :set_budget, only: [:show, :destroy, :edit, :update]
+  before_action :personal_page, only:[:show]
+  
   def personal_page
     if params[:id]
       if (params[:id]!=sessions[:user_id])
