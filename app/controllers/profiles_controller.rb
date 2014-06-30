@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_budget, only: [:show, :destroy, :edit, :update]
-  before_action :personal_page, only:[:show]
+  #before_action :personal_page, only:[:show]
   
   def personal_page
     if params[:id]
@@ -71,6 +71,7 @@ class ProfilesController < ApplicationController
   end
   
   def show
+    
     @user=User.find(params[:id])
 
     @finance_items=FinanceItem.all
