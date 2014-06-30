@@ -1,5 +1,12 @@
 class ProfilesController < ApplicationController
   before_action :set_budget, only: [:show, :destroy, :edit, :update]
+  def personal_page
+    if params[:id]
+      if (params[:id]!=sessions[:user_id])
+        redirect_to login_url
+      end
+    end
+  end
   def new
     @spendings=[]
     @budgets=[]
