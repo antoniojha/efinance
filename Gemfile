@@ -9,7 +9,7 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
 gem 'faker'
-
+gem 'figaro'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
@@ -22,10 +22,10 @@ gem 'bcrypt-ruby', '3.1.2'
 
 group :development,:test do
   # Use rpsec-rails for development testing
-  gem 'rspec-rails', '2.13.1'
+
   gem 'rconsole', '~> 0.1.0'
   gem 'sqlite3'
-  
+  gem 'rspec-rails'
   #Use thin as the server as mongrel is outdated with Ruby v1.9.3
   #gem 'thin'
 

@@ -60,6 +60,9 @@ GEM
     faker (1.3.0)
       i18n (~> 0.5)
     ffi (1.9.3-x86-mingw32)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     googlecharts (1.6.8)
     hike (1.2.3)
     i18n (0.6.9)
@@ -178,6 +181,7 @@ DEPENDENCIES
   cocaine
   coffee-rails (~> 4.0.0)
   faker
+  figaro
   googlecharts
   jbuilder (~> 1.2)
   jquery-rails
@@ -187,7 +191,7 @@ DEPENDENCIES
   rails
   rails_12factor
   rconsole (~> 0.1.0)
-  rspec-rails (= 2.13.1)
+  rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
   selenium-webdriver
