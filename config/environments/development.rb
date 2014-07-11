@@ -1,4 +1,4 @@
-WebFinance3::Application.configure do
+WebFinance::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -34,4 +34,16 @@ WebFinance3::Application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  
+  
+  #Set up for Gmail for SMTP
+    config.action_mailer.smtp_settings={
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'gmail.com',
+    enable_starttls_auto: true,
+    authentication: 'plain',
+    user_name: 'antoniojha@gmail.com',
+    password: '6004Aj??'
+  }
 end
