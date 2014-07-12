@@ -10,8 +10,11 @@
   <%= javascript_include_tag 'jquery-ui-1.10.4.custom'%> <!-- vendor plugin js file-->
 
   <%= csrf_meta_tags %>
+  <!-- [if lt IE 9]>
+  	<script src="http://html5shim.googlecode.com/svn/trunk/html15.js"></script>
+  <![endif]-->
   <style>
- 		 body {
+ 	body {
     		height: 100%;
     		position:relative;
 	}
