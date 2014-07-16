@@ -15,8 +15,5 @@
 /log/*.log
 /tmp
 
-# Ignore secret token file
-/config/secrets.yml
-
 # Ignore application configuration
 /config/application.yml

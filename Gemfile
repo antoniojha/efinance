@@ -25,14 +25,23 @@ group :development,:test do
 
   gem 'rconsole', '~> 0.1.0'
   gem 'sqlite3'
-  gem 'rspec-rails'
+  gem 'rspec-rails','2.13.1'
+  gem 'guard-rspec','2.5.0'
   #Use thin as the server as mongrel is outdated with Ruby v1.9.3
   #gem 'thin'
-
+  #Please add the following to your Gemfile to avoid polling for changes:
+  require 'rbconfig'
+  if RbConfig::CONFIG['target_os'] =~ /mswin|mingw|cygwin/i
+    gem 'wdm', '>= 0.1.0'
+  end
+  # the following gems will speed up rspec testing
+  gem 'spork-rails'
+  gem 'guard-spork'
+  gem 'childprocess'
 end
 group :test do
   gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '2.35.1'
 end
 
 # Used for CSS

@@ -16,10 +16,8 @@
 @import "bootstrap";
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 
-.home, .users{
   .logo{
     color: white;
-    text-align: left;
     font-size:3em;
   }
   .vertical-align{
@@ -35,7 +33,7 @@
     width: 100%;
     margin: 0 auto;
   }
-}
+
 a {
   &:visited {
     color: #666;

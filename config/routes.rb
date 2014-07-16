@@ -15,7 +15,11 @@ WebFinance::Application.routes.draw do
    get 'overview'=> :new
    post 'overview'=> :create
  end
-  root 'sessions#new'
+ get "static_pages/demo"
+ get "static_pages/about"
+ get "static_pages/contact"
+ 
+ root 'sessions#new'
  resources :search_spending
  resources :users
 
