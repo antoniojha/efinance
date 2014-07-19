@@ -2,14 +2,11 @@
 
 <div class="jumbotron">
   <h1>Hello <%=@user.username%>!</h1>
-  <p>Welcome to WebFinance, the website designed to help you success in your financial planning!</p>
-  <p><%= button_to 'Learn more',{:controller =>:admin, :action=>:index}, :class=>"btn btn-primary btn-lg"%></p>
 </div>
 <% content_for :menu do%>
 	<%=render "menu"%>
 <% end %>
 <% content_for :left do%>
-	
 	Alert<br>
 	<% if @alert_entry%>
 		You haven't enter log for today!

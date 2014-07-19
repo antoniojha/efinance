@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WebFinance App|About</title>
+  <title>WebFinance App|<%=yield :title%></title>
 
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 
@@ -26,28 +26,7 @@
 <body>
 <div style="height:100%">
 	<header height="50%" class="navbar-default navbar-inverse navbar-static-top" role="navigation">    	         
-		<div class="navbar-inner">
-			<div class="container">	
-				
-  		 		<nav>
-  		 			<ul class="navbar-nav nav pull-left">
-  		 				<li class="navbar-text"><span class="logo">WebFinance</span></li>
-  		 			</ul>
-  		 			<ul class="navbar-nav nav pull-right">
-  		 								
-            		<% if User.find_by(id: session[:user_id])%>
-            		<li><%= link_to 'Home', profile_url(session[:user_id])%></li>
-           		 	<% end %>
-            		<li><a href="/static_pages/demo">Quick Demo</a></li>
-            		<% if User.find_by(id: session[:user_id])%>
-            		<li><%= link_to 'Sign Out', logout_url, method: :delete%></li>
-            		<% else %>
-            		<li><%= link_to 'Sign In', login_url%></li>
-            		<% end %>
-          			</ul>
-          		</nav>
-        	</div>
-		</div>           
+		<%=render 'layouts/header'%>       
 	</header>
 	<div style="height:80%;overflow:scroll; overflow-x:hidden; padding-bottom:0px">
 	
@@ -79,17 +58,7 @@
 	
 	</div>
 	<footer height="10%" class="navbar-default navbar-inverse navbar-fixed-bottom" role="navigation">             
-  		<div class="container">
-  			<div class="navbar-inner">
-			    <ul class="navbar-nav nav">
-      				<li><a href="/static_pages/about">About</a></li>
-      				<li><a href="/static_pages/contact">Contact</a></li>
-      				<li><a href="#">Blog</a></li>
-      			<%= #debug(params) if Rails.env.development? 
-      			%>
-    			</ul>
-   			</div>
-  		</div>         
+		<%=render "layouts/footer"%>       
 	</footer>
 </div>
 </body>

@@ -1,0 +1,20 @@
+<div class="navbar-inner">
+	<div class="container">			
+  		 <nav>
+  			<ul class="navbar-nav nav pull-left">
+  		 		<li class="navbar-text"><span class="logo">WebFinance</span></li>
+  		 	</ul>
+  		 	<ul class="navbar-nav nav pull-right">
+  		 		<li><%=link_to'Quick Demo', demo_path%></li>					
+            	<% if User.find_by(id: session[:user_id])%>
+            	<li><%= link_to 'Profile', profile_url(session[:user_id])%></li>
+           		<% end %>
+            	<% if User.find_by(id: session[:user_id])%>
+            	<li><%= link_to 'Sign Out', logout_url, method: :delete%></li>
+            	<% else %>
+            	<li><%= link_to 'Sign In', login_url%></li>
+            	<% end %>
+          	</ul>
+          </nav>
+     </div>
+</div>    

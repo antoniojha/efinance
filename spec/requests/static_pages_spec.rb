@@ -1,45 +1,28 @@
 require 'spec_helper'
 
 describe "StaticPages" do
+  subject {page}
   describe "Home page" do
-    it "should direct to the login page" do
-      visit '/login'
-      expect(page).to have_content('Login')
-    end
-    it "should direct to the home page" do
-      visit root_path
-      expect(page).to have_content('Login')
-    end
+    before {visit root_path}
+    it {should have_content('Home')}
+  end
+  describe "Login page" do
+    before {visit login_path}
+    it {should have_content('Login')}
   end
   describe "Demo page" do
-    it "should direct to the demo page" do
-      visit '/static_pages/demo'
-      expect(page).to have_content('Demo')
-    end
-    subject {page}
-  #  it "should have title demo" do
-  #    visit '/static_pages/demo'
-  #    should have_title("WebFinance App|Demo")
-  #  end
+    before {visit demo_path}
+    it {should have_content('Demo')}  
+    it {should have_title("WebFinance App|Demo")}   
   end
   describe "About page" do
-    it "should direct to the about page" do
-      visit '/static_pages/about'
-      expect(page).to have_content('About')
-    end
-  #  it "should have title about" do
-  #    visit '/static_pages/about'
-  #    expect(page).to have_selector("title",text:"WebFinance App|About")
-  #  end
+    before {visit about_path}
+    it {should have_content('About')}
+    it {should have_title("WebFinance App|About")}  
   end
   describe "Contact page" do
-    it "should direct to the contact page" do
-      visit '/static_pages/contact'
-      expect(page).to have_content('Contact')
-    end
-  #  it "should have title contact" do
-  #    visit '/static_pages/contact'
-  #    expect(page).to have_title("WebFinance App|Contact")
-  #  end
+    before {visit contact_path}
+    it {should have_content('Contact')} 
+    it {should have_title("WebFinance App|Contact")}  
   end
 end
