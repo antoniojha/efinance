@@ -5,6 +5,6 @@ require 'rufus/scheduler'
 
 email_scheduler=Rufus::Scheduler.new
 
-email_scheduler.every "10s" do
+email_scheduler.every "10d" do
   system "rake send_email_remind RAILS_ENV=development"
 end

@@ -14,6 +14,8 @@ gem 'figaro'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
 
+#scheduler
+gem 'rufus-scheduler'
 
 # Install library to use Yellow Fade Technique to highlight ajax change
 gem 'jquery-ui-rails'

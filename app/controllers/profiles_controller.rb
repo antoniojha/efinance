@@ -1,3 +1,4 @@
+require 'date'
 class ProfilesController < ApplicationController
   before_action :set_budget, only: [:show, :destroy, :edit, :update]
   before_action :personal_page, only:[:show]
@@ -77,6 +78,19 @@ class ProfilesController < ApplicationController
 
     @finance_items=FinanceItem.all
     @saved_budget_plan=TempBudgetPlan.find_by(user_id: session[:user_id])
+    
+    # check to see if an entry has been saved today
+    @today=Date.today
+    @last_trans=Spending.first(:order=>'transaction_date DESC')
+    if @last_trans
+      if (@today > @last_trans.transaction_date)
+        @alert_entry=true
+      else
+        @alert_entry=false  
+      end
+    else
+      @alert_entry=true
+    end
   end
   def destroy
     @budget=RecurBudget.find(params[:id])

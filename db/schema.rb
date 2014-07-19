@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140627232834) do
+ActiveRecord::Schema.define(version: 20140719012420) do
 
   create_table "budget_plans", force: true do |t|
     t.decimal  "budget_amount",        precision: 8, scale: 2
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20140627232834) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "email_authen"
   end
 
 end

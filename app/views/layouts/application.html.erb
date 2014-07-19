@@ -50,33 +50,33 @@
 		</div>           
 	</header>
 	<div style="height:80%;overflow:scroll; overflow-x:hidden; padding-bottom:0px">
-	<div class="container">
+	
 		<div class="row" style="margin: 0 auto;">
 	
 		<% if controller.controller_name=="profiles"%>
-			<div class="col-md-1">
+			<div class="col-md-2" align="left">
 				<%= yield :left%>
 			</div>
-			<div class="col-md-10" align="center">
+			<div class="col-md-8" align="center">
 				<%= yield :menu%>
 				<%= yield %>
 			</div>
-			<div class="col-md-1">
+			<div class="col-md-2" align="left">
 				<%= yield :right%>
 			</div>
 		<%else%>
-			<div class="col-md-3">
+			<div class="col-md-3" align="left">
 				<%= yield :left%>
 			</div>
 			<div class="col-md-6" align="center">
 				<%= yield %>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-3" align="left">
 				<%= yield :right%>
 			</div>
 		<%end%>
 		</div>
-	</div>
+	
 	</div>
 	<footer height="10%" class="navbar-default navbar-inverse navbar-fixed-bottom" role="navigation">             
   		<div class="container">

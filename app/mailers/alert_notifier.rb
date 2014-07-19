@@ -6,9 +6,9 @@ class AlertNotifier < ActionMailer::Base
   #
   #   en.alert_notifier.alert.subject
   #
-  def alert
+  def send_email_remind(user)
     @greeting = "Hi"
 
-    mail to: "antoniojha@gmail.com", subject: 'Alert'
+    mail to: user.email, subject: 'Alert'
   end
 end

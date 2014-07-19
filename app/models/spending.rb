@@ -4,7 +4,7 @@ class Spending < ActiveRecord::Base
   has_attached_file :picture#, :styles=>{:small=>"150x150>"}
   VALID_DATE_FORMAT=/\A(0?|1?)[1-9](\/)[0-3]?[0-9](\/)[1-2]?[019]?\d\d\z/
 
-  validates :transaction_date, format: {with:VALID_DATE_FORMAT}
+ # validates :transaction_date, format: {with:VALID_DATE_FORMAT}
   validates :title, :price, :transaction_date, :category, presence: true
   validates :price, allow_blank: true, numericality:{greater_than_or_equal_to:0.01}  
   validates_attachment_content_type :picture, :content_type=> ["image/jpg", "image/jpeg", "image/png", "image/gif"]
