@@ -1,13 +1,14 @@
 class StaticPagesController < ApplicationController
   
-  def demo
-    
+  def demo  
   end
   
   def about
-    
   end
+  
   def contact
-    
+  end
+  
+  def blog  
   end
 end

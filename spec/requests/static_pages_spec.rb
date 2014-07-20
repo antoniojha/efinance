@@ -5,6 +5,19 @@ describe "StaticPages" do
   describe "Home page" do
     before {visit root_path}
     it {should have_content('Home')}
+    it {should have_title("WebFinance App|Home")}
+    it "should have right links" do
+      click_link "About"
+      expect(page).to have_title("WebFinance App|About")
+      click_link "Contact"
+      expect(page).to have_title("WebFinance App|Contact")
+      click_link "Home"
+      expect(page).to have_title("WebFinance App|Home")
+      click_link "Quick Demo"
+      expect(page).to have_title("WebFinance App|Demo")
+      click_link "Blog"
+      expect(page).to have_title("WebFinance App|Blog")
+    end
   end
   describe "Login page" do
     before {visit login_path}

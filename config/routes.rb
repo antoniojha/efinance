@@ -21,6 +21,7 @@ WebFinance::Application.routes.draw do
    get "about" => :about
    get "contact" => :contact
    get "home" => :home
+   get "blog" => :blog
  end
  root 'static_pages#home'
  resources :search_spending
