@@ -43,6 +43,10 @@
 			<div class="col-md-2" align="left">
 				<%= yield :right%>
 			</div>
+		<% elsif controller.controller_name=="users"%>
+			<div class="col-md-12" align="center">
+				<%= yield %>
+			</div>
 		<%else%>
 			<div class="col-md-3" align="left">
 				<%= yield :left%>

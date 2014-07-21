@@ -33,7 +33,17 @@ $(document).ready(function() {
 		$('input.transaction_date').datepicker({ dateFormat: 'mm/dd/yy' });
 	});
 });
-
+$(document).ready(function()
+		{
+		  $('#user_password').focus(
+		    function(){
+		    	$('#password_description').show("test");
+		    });  
+		  $('#user_password').blur(
+			function(){
+				$('#password_description').hide();
+			}); 
+		});
 /*$(document).ready(function(){
 	alert("it's ready");
 });
