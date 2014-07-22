@@ -2,7 +2,7 @@ WebFinance::Application.routes.draw do
   # You can have the root of your site routed with "root"
 
  resources :spendings
- match '/signup', to: 'users#new', via: 'get'
+
  
  get "admin"=>'admin#index'
  controller :sessions do
@@ -25,7 +25,10 @@ WebFinance::Application.routes.draw do
  end
  root 'static_pages#home'
  resources :search_spending
+ 
  resources :users
+ match '/signup', to: 'users#new', via: 'get'
+ get 'email_confirmation'=>'users#email_confirmation'
 
  resources :finance_plans
 

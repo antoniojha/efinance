@@ -87,7 +87,22 @@ describe User do
       end
     end
   end
-  
+  describe "email downcasting" do
+    let(:mixed_case_email){"MIXED_case@example.com"}
+    it "should downcase email" do
+      @user.email=mixed_case_email
+      @user.save
+      expect(@user.reload.email).to eq @user.email.downcase
+    end
+  end
+  describe "username downcasting" do
+    let(:mixed_case_username){"MIXED_case_username"}
+    it "should downcase username" do
+      @user.username=mixed_case_username
+      @user.save
+      expect(@user.reload.username).to eq @user.username.downcase
+    end
+  end
   describe "when password format is valid" do
     it "should be invalid" do
       passwords=%w[aaaaaa1- aaaaaaA- AAAAAA1-]

@@ -11,4 +11,9 @@ class AlertNotifier < ActionMailer::Base
 
     mail to: user.email, subject: 'Alert'
   end
+  def send_email_confirm(user)
+    @greating="Dear customer,"
+    @user=user
+    mail to: user.email, subject: 'Welcome to WebFinance'
+  end
 end

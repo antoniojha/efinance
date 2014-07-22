@@ -14,5 +14,6 @@ class User < ActiveRecord::Base
   
   #ensure all email address are saved lower case
   before_save{self.email=email.downcase}
-  
+  #ensure all email address are saved lower case
+  before_save{self.username=username.downcase}  
 end

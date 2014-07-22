@@ -3,18 +3,20 @@
 <p id="notice"><%=flash[:alert]%>
 <%end%>	
 <%= form_tag do%>
-	Please Log In <br>
-	<table>
+	
+	<table width="50%">
 		<tr>
-			<td><%= label_tag :username, 'Name:'%></td>
-			<td><%= text_field_tag :username, params[:username], {:class=>'form-control'}%></td>
+			<td width="30%"><%= label_tag :username, 'Name:'%></td>
+			<td width="70%"><%= text_field_tag :username, params[:username], {:class=>'form-control'}%></td>
 		</tr>
+		<tr class="blank_row"></tr>
 		<tr>
 			<td><%= label_tag :password, 'Password:'%></td>
 			<td><%= password_field_tag :password, params[:password], {:class=>'form-control'}%></td>
 		</tr>
+		<tr class="blank_row"></tr>
 		<tr>
-			<td><%= submit_tag "Login"%></td>
+			<td><%= submit_tag "Login", :class=>'btn btn-primary'%></td>
 			<td><%= link_to 'New User?', new_user_path%></td>
 		</tr>
 	</table>

@@ -29,7 +29,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id]=@user.id
-        format.html { redirect_to profile_url(@user.id), notice: 'User was successfully created.' }
+        format.html { render "email_confirmation", notice: 'User was successfully created.' }
+        AlertNotifier.send_email_confirm(@user).deliver
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
@@ -61,7 +62,10 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  def email_confirmation
+    @user=User.find(session[:user_id])
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
