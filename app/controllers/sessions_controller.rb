@@ -6,10 +6,10 @@ class SessionsController < ApplicationController
   def create
     user=User.find_by(username: params[:username])
     if user and user.authenticate(params[:password])
-      session[:user_id]=user.id
+      session[:auth_token]=user.auth_token
     #  session[:budget_plan_id]=TempBudgetPlan.find_by(user_id: user.id).id
 
-      redirect_to profile_url(user.id)
+      redirect_to profile_url(user.auth_token)
     else
       redirect_to login_url, alert: "Invalid user/password combination"
     end

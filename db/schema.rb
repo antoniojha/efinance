@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140720025916) do
+ActiveRecord::Schema.define(version: 20140723023635) do
 
   create_table "budget_plans", force: true do |t|
     t.decimal  "budget_amount",        precision: 8, scale: 2
@@ -121,6 +121,9 @@ ActiveRecord::Schema.define(version: 20140720025916) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "email_authen"
+    t.string   "auth_token"
+    t.string   "email_confirmation_token"
+    t.datetime "email_confirmation_sent_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

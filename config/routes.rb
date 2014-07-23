@@ -28,8 +28,10 @@ WebFinance::Application.routes.draw do
  
  resources :users
  match '/signup', to: 'users#new', via: 'get'
- get 'email_confirmation'=>'users#email_confirmation'
-
+ 
+ match '/confirmation', to:'email_confirmation#new',via:'get'
+ resources :email_confirmation
+ 
  resources :finance_plans
 
  resources :profiles

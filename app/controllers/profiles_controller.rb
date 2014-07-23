@@ -5,9 +5,9 @@ class ProfilesController < ApplicationController
   
   def personal_page
     if params[:id]
-      temp_user=User.find(params[:id])
-      if (temp_user.id!=session[:user_id])
-        redirect_to profile_url(session[:user_id])
+      temp_user=User.find_by_auth_token(params[:id])
+      if (temp_user.auth_token!=session[:auth_token])
+        redirect_to profile_url(session[:auth_token])
       end
     end
   end
@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
     @budgets=[]
     @spendings_p=[]
 
-    @budget=TempBudgetPlan.find_by(:user_id=>session[:user_id])   
+    @budget=TempBudgetPlan.find_by(:user_id=>session[:auth_token])   
     if @budget 
     @spending_food=Spending.sum(:price, :conditions=>{:category=>"Food Budget", :user_id=>session[:user_id]})
     @spending_food_p=@spending_food/@budget.food_budget*100

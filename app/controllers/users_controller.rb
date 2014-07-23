@@ -29,8 +29,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id]=@user.id
-        format.html { render "email_confirmation", notice: 'User was successfully created.' }
-        AlertNotifier.send_email_confirm(@user).deliver
+        format.html { redirect_to confirmation_url, notice: 'User was successfully created.' }
+        
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }

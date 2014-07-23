@@ -46,4 +46,7 @@ WebFinance::Application.configure do
     user_name: 'antoniojha@gmail.com',
     password: '6004Aj??'
   }
+  #set up link direction sent out in Mailer
+  
+  config.action_mailer.default_url_options={:host=>"localhost:3000"}
 end
