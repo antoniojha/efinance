@@ -1,22 +1,13 @@
 require 'date'
 class ProfilesController < ApplicationController
   before_action :set_budget, only: [:show, :destroy, :edit, :update]
-  before_action :personal_page, only:[:show]
-  
-  def personal_page
-    if params[:id]
-      temp_user=User.find_by_auth_token(params[:id])
-      if (temp_user.auth_token!=session[:auth_token])
-        redirect_to profile_url(session[:auth_token])
-      end
-    end
-  end
+
   def new
     @spendings=[]
     @budgets=[]
     @spendings_p=[]
 
-    @budget=TempBudgetPlan.find_by(:user_id=>session[:auth_token])   
+    @budget=TempBudgetPlan.find_by(:user_id=>session[:user_id])   
     if @budget 
     @spending_food=Spending.sum(:price, :conditions=>{:category=>"Food Budget", :user_id=>session[:user_id]})
     @spending_food_p=@spending_food/@budget.food_budget*100
@@ -74,7 +65,7 @@ class ProfilesController < ApplicationController
   
   def show
     
-    @user=User.find(params[:id])
+    @user=User.find_by_auth_token(params[:id])
 
     @finance_items=FinanceItem.all
     @saved_budget_plan=TempBudgetPlan.find_by(user_id: session[:user_id])
@@ -93,7 +84,7 @@ class ProfilesController < ApplicationController
     end
   end
   def destroy
-    @budget=RecurBudget.find(params[:id])
+    @budget=RecurBudget.find(params[:authen_token])
     @budget.destroy
     respond_to do |format|
       format.html {redirect_to profiles_url}

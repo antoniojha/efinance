@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     user=User.find_by(username: params[:username])
     if user and user.authenticate(params[:password])
       session[:auth_token]=user.auth_token
+      session[:user_id]=user.id
     #  session[:budget_plan_id]=TempBudgetPlan.find_by(user_id: user.id).id
 
       redirect_to profile_url(user.auth_token)

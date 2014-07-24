@@ -36,6 +36,10 @@ WebFinance::Application.configure do
   # config.action_view.raise_on_missing_translations = true
   
   
+  #set up link direction sent out in Mailer
+  
+  config.action_mailer.default_url_options={:host=>"localhost:3000"}
+  
   #Set up for Gmail for SMTP
     config.action_mailer.smtp_settings={
     address: 'smtp.gmail.com',
@@ -46,7 +50,5 @@ WebFinance::Application.configure do
     user_name: 'antoniojha@gmail.com',
     password: '6004Aj??'
   }
-  #set up link direction sent out in Mailer
-  
-  config.action_mailer.default_url_options={:host=>"localhost:3000"}
+
 end

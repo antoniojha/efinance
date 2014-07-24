@@ -1,7 +1,7 @@
 
 class Spending < ActiveRecord::Base
   belongs_to :user
-  has_attached_file :picture#, :styles=>{:small=>"150x150>"}
+  has_attached_file :picture, :styles=>{:small=>"150x150>"}
   VALID_DATE_FORMAT=/\A(0?|1?)[1-9](\/)[0-3]?[0-9](\/)[1-2]?[019]?\d\d\z/
 
  # validates :transaction_date, format: {with:VALID_DATE_FORMAT}
