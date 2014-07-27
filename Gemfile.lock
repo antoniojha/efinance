@@ -107,11 +107,16 @@ GEM
     multi_json (1.10.1)
     nokogiri (1.6.2.1-x86-mingw32)
       mini_portile (= 0.6.0)
+    os (0.9.6)
     paperclip (4.1.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    paperclip-compression (0.3.6)
+      os (~> 0.9.6)
+      paperclip (>= 3.3)
+      ruby-imagespec (~> 0.3.1)
     pg (0.17.1-x86-mingw32)
     polyglot (0.3.5)
     pry (0.10.0-x86-mingw32)
@@ -162,6 +167,7 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
+    ruby-imagespec (0.3.1)
     rubyzip (0.9.9)
     rufus-scheduler (3.0.8)
       tzinfo
@@ -238,6 +244,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   paperclip
+  paperclip-compression
   pg
   rails
   rails_12factor

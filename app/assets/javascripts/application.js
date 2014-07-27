@@ -29,8 +29,8 @@ $(document).ready(function() {
 		$('#budget_transaction_date').removeAttr('disabled');
 	})	
 	$(function(){
-		$('input.transaction_date').initialized=true;
-		$('input.transaction_date').datepicker({ dateFormat: 'mm/dd/yy' });
+
+		$('#spending_transaction_date').datepicker({ dateFormat: 'mm/dd/yy' });
 	});
 });
 

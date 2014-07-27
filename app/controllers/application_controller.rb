@@ -29,6 +29,6 @@ class ApplicationController < ActionController::Base
     def invalid_page
       flash[:notice]= "Accessing an invalid page!"
       logger.error "Attempt to access invalid page"
-      redirect_to profile_url(session[:user_id])
+      redirect_to profile_url(session[:username])
     end
 end

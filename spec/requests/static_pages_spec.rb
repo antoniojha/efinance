@@ -18,7 +18,7 @@ describe "StaticPages" do
       click_link "Blog"
       expect(page).to have_title("WebFinance App|Blog")
       click_link "Sign In"
-      it {should have_content("Login")}
+      expect(page).to have_content("Login")
     end
   end
   describe "Login page" do

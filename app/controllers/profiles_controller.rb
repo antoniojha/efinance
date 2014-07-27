@@ -1,6 +1,6 @@
 require 'date'
 class ProfilesController < ApplicationController
-  before_action :set_budget, only: [:show, :destroy, :edit, :update]
+
 
   def new
     @spendings=[]
@@ -65,7 +65,7 @@ class ProfilesController < ApplicationController
   
   def show
     
-    @user=User.find_by_auth_token(params[:id])
+    @user=User.find_by_username(params[:id])
 
     @finance_items=FinanceItem.all
     @saved_budget_plan=TempBudgetPlan.find_by(user_id: session[:user_id])
@@ -84,7 +84,7 @@ class ProfilesController < ApplicationController
     end
   end
   def destroy
-    @budget=RecurBudget.find(params[:authen_token])
+    @budget=RecurBudget.find(params[:id])
     @budget.destroy
     respond_to do |format|
       format.html {redirect_to profiles_url}
@@ -94,9 +94,7 @@ class ProfilesController < ApplicationController
    @goals=Goal.all
   end
   private
-    def set_budget
-    #  @budget=User.find(params[:id]) <-- taken out until implementing sign-in feature
-    end
+
     def budget_params
       params.require(:budget).permit(:title, :category, :price, :recur_week_period, :transaction_date, :user_id).merge(:temp_budget_plan_id=>session[:budget_plan_id])
     end

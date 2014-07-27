@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 # Paperclip, used to upload pictures to Amazon S3
 gem 'paperclip'
+
+gem 'paperclip-compression'
+
 gem 'aws-sdk'
 gem 'cocaine'
 ruby '1.9.3'

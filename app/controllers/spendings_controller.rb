@@ -2,8 +2,7 @@ require 'will_paginate/array'
 class SpendingsController < ApplicationController
   skip_before_filter :verify_authenticity_token  
   before_action :set_spending, only: [:show, :edit, :update, :destroy]
-  before_action :format_date, only: [:create]
-  
+  before_action :format_date, only:[:create]
   
   # GET /spendings
   # GET /spendings.json
@@ -34,9 +33,9 @@ class SpendingsController < ApplicationController
   # POST /spendings.json
   def create
     @spending = Spending.new(spending_params)
-
+    
     respond_to do |format|
-      if @spending.save
+      if @spending.save    
         format.html { redirect_to new_spending_url, notice: 'Spending was successfully created.' }
         format.json { render action: 'show', status: :created, location: @spending }
       else
@@ -83,6 +82,11 @@ class SpendingsController < ApplicationController
       params.require(:spending).permit(:title, :description, :image_url, :price, :transaction_date, :picture, :category).merge(:user_id=> session[:user_id])
     end
     def format_date
+      begin
         params[:spending][:transaction_date]=DateTime.strptime(params[:spending][:transaction_date],'%m/%d/%Y')
+      rescue ArgumentError
+        
+        
+      end
     end
 end
