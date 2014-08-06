@@ -1,4 +1,6 @@
-
+<p><strong>Download:</strong>
+	<%=link_to "CSV", spendings_path(format:"csv")%>
+	<%=link_to "Excel", spendings_path(format:"xls")%></p>
 <table width="500">
   <thead>
     <tr>
@@ -13,14 +15,16 @@
 	
   <tbody>
     <% @spendings.each do |spending| %>
+   	  <% if spending%>
       <tr class="<%=cycle('list_line_odd','list_line_even')%>">
-      	<td width="5%" align="center"><%=spending.transaction_date.strftime('%m/%d/%Y')%></td>
+      	<td width="5%" align="center"><%=spending.transaction_date_d.strftime('%m/%d/%Y')%></td>
         <td width="55%" align="center"><b><%= spending.title %></b></td>
         <td width="25%" align="center"><%= number_to_currency(spending.price) %></td>
         <td><%= link_to 'Show', spending %></td>
         <td><%= link_to 'Edit', edit_spending_path(spending) %></td>
         <td><%= link_to 'Delete', spending, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <%end%>
     <% end %>
   </tbody>
 </table>

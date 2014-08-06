@@ -72,15 +72,17 @@ class ProfilesController < ApplicationController
     
     # check to see if an entry has been saved today
     @today=Date.today
-    @last_trans=Spending.first(:order=>'transaction_date DESC')
+    @last_trans=Spending.first(:order=>'transaction_date_d DESC')
     if @last_trans
-      if (@today > @last_trans.transaction_date)
-        @alert_entry=true
+      if @last_trans.transaction_date_d
+        if (@today > @last_trans.transaction_date_d)
+          @alert_entry=true
+        else
+          @alert_entry=false  
+        end
       else
-        @alert_entry=false  
+        @alert_entry=true
       end
-    else
-      @alert_entry=true
     end
   end
   def destroy

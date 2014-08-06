@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <% if @spending.picture_file_name%>
-  <%= image_tag @spending.picture.url, {:height=>"100px",:width=>"auto"}%>
+  <%= link_to (image_tag @spending.picture.url, {:height=>"100px",:width=>"auto"}),spendings_receipt_url(@spending)%>
 <% end %>
 <p>
   <strong>Title:</strong>

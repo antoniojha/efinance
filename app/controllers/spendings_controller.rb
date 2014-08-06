@@ -1,25 +1,32 @@
 require 'will_paginate/array'
+require 'time'
+require 'date'
 class SpendingsController < ApplicationController
   skip_before_filter :verify_authenticity_token  
-  before_action :set_spending, only: [:show, :edit, :update, :destroy]
-  before_action :format_date, only:[:create]
+  before_action :set_spending, only: [:show, :receipt, :edit, :update, :destroy]
   
   # GET /spendings
   # GET /spendings.json
 
   def index
     
-    end_date= DateTime.now
+    end_date= Date.current
     start_date=end_date-7
-    @spendings = Spending.transaction_after(start_date).where(:user_id=>session[:user_id]).order(:transaction_date).reverse
-
+    @spendings = Spending.transaction_after(start_date).where(:user_id=>session[:user_id]).order(:transaction_date_d).reverse
+    respond_to do |format|
+      format.html
+      format.csv{send_data @spendings.to_csv}
+      format.xls
+    end
   end
 
   # GET /spendings/1
   # GET /spendings/1.json
   def show
   end
-
+  def receipt
+    
+  end
   # GET /spendings/new
   def new
     @spending = Spending.new
@@ -70,7 +77,9 @@ class SpendingsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def import
+    
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_spending
@@ -80,13 +89,5 @@ class SpendingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def spending_params
       params.require(:spending).permit(:title, :description, :image_url, :price, :transaction_date, :picture, :category).merge(:user_id=> session[:user_id])
-    end
-    def format_date
-      begin
-        params[:spending][:transaction_date]=DateTime.strptime(params[:spending][:transaction_date],'%m/%d/%Y')
-      rescue ArgumentError
-        
-        
-      end
     end
 end

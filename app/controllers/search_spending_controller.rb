@@ -3,7 +3,7 @@ require 'will_paginate/array'
 class SearchSpendingController < ApplicationController
   skip_before_filter :verify_authenticity_token  
   def create
-    end_date= DateTime.now
+    end_date= Date.current
     x=params[:transac_period]
     x=x.to_i
     # base on which option is selected, it will return the beginning transaction date to query database
@@ -27,7 +27,7 @@ class SearchSpendingController < ApplicationController
         @spendings = Spending.transaction_after(start_date).where(:user_id=>session[:user_id])
       end 
     end  
-    @spendings=@spendings.order(:transaction_date).reverse
+    @spendings=@spendings.order(:transaction_date_d).reverse
 
     respond_to do |format|
       format.html{}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723023635) do
+ActiveRecord::Schema.define(version: 20140801000424) do
 
   create_table "budget_plans", force: true do |t|
     t.decimal  "budget_amount",        precision: 8, scale: 2
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20140723023635) do
     t.text     "description"
     t.string   "image_url"
     t.decimal  "price"
-    t.datetime "transaction_date"
+    t.string   "transaction_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "picture_file_name"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20140723023635) do
     t.datetime "picture_updated_at"
     t.integer  "user_id"
     t.string   "category"
+    t.datetime "transaction_date_d"
   end
 
   create_table "temp_budget_plans", force: true do |t|
@@ -110,6 +111,11 @@ ActiveRecord::Schema.define(version: 20140723023635) do
   end
 
   create_table "temp_items", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transaction_imports", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

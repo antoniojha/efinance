@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 gem 'paperclip'
 
 gem 'paperclip-compression'
+# This provides standardized interface to access a variety of spreadsheet format
+gem 'roo'
+
 
 gem 'aws-sdk'
 gem 'cocaine'

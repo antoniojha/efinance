@@ -15,6 +15,7 @@
 						<ul class="dropdown-menu">
 							<li><%= link_to 'Add Transaction',{:controller=>'spendings', :action=>'new'}, :method=>:get%></li>
 							<li><%= link_to 'View Transactions', spendings_url%></li>
+							<li><%= link_to 'Import Transactions', new_transaction_import_url %></li>
 						</ul>
 					</li>
 					<li class="dropdown">

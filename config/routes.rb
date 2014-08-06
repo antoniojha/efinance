@@ -2,7 +2,8 @@ WebFinance::Application.routes.draw do
   # You can have the root of your site routed with "root"
 
  resources :spendings
-
+ get 'spendings/receipt/:id', to: 'spendings#receipt', as: 'spendings/receipt'
+ resources :transaction_imports
  
  get "admin"=>'admin#index'
  controller :sessions do
@@ -22,6 +23,7 @@ WebFinance::Application.routes.draw do
    get "contact" => :contact
    get "home" => :home
    get "blog" => :blog
+   get "faq" =>:faq
  end
  root 'static_pages#home'
  resources :search_spending
