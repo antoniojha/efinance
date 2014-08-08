@@ -11,7 +11,7 @@ class Spending < ActiveRecord::Base
   #validates :price, allow_blank: true, numericality:{greater_than_or_equal_to:0.01}  
   validates_attachment_content_type :picture, :content_type=> ["image/jpg", "image/jpeg", "image/png", "image/gif", "image/pjpeg"]
  
-  scope :transaction_after, ->(date) { where("transaction_date_d > ?",date-1)}  
+ # scope :transaction_after, ->(date) { where("transaction_date_d > ?",date-1)}  
   # this is actually two validation tests in one line
   validate :check_if_future_transaction_date, if: :check_and_validate_date
   validate :check_and_validate_date
@@ -40,11 +40,19 @@ class Spending < ActiveRecord::Base
       errors.add(:transaction_date, "can't be in the future")
     end
   end
+  def self.find_spendings(condition_num,start_date,user_id)
+      if condition_num==6
+        where(:user_id=>user_id).order(:transaction_date_d).reverse 
+      else
+        where("transaction_date_d > ?",start_date-1).where(:user_id=>user_id).order(:transaction_date_d).reverse 
+      end 
+  end
+
   @column_names=%w[id title description price transaction_date category]
-  def to_csv
+  def self.to_csv(all_spendings)
     CSV.generate do |csv|
       csv << @column_names
-      all.each do |spending|
+      all_spendings.each do |spending|
         csv << spending.attributes.values_at(*@column_names)
       end
     end

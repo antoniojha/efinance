@@ -19,18 +19,20 @@
 //= require_tree ../../../vendor/assets/javascripts/.
 
 $(document).ready(function() {
-	$('#budget_begin_or_end_of_month_1').click(function(){
+	$('#recur_budget_begin_or_end_of_month_1').click(function(){
 		$('#budget_transaction_date').attr('disabled','disabled');
-	})
-	$('#budget_begin_or_end_of_month_2').click(function(){
+	});// disable the text box for date input of the recur_budget/new form if selected	
+	$('#recur_budget_begin_or_end_of_month_2').click(function(){
 		$('#budget_transaction_date').attr('disabled','disabled');
-	})	
+	});// disable the text box for date input of the recur_budget/new form if selected	
 	$('#reset').click(function(){
 		$('#budget_transaction_date').removeAttr('disabled');
-	})	
+	});//	
 	$(function(){
-
 		$('#spending_transaction_date').datepicker({ dateFormat: 'mm/dd/yy' });
+	});//prompts date picker in spending/new form
+	$('#advance_search').click(function(){
+	//	$('#advance_search_form').attr('display','visible')
 	});
 });
 

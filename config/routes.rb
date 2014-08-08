@@ -26,7 +26,7 @@ WebFinance::Application.routes.draw do
    get "faq" =>:faq
  end
  root 'static_pages#home'
- resources :search_spending
+ resources :search_spendings
  
  resources :users
  match '/signup', to: 'users#new', via: 'get'

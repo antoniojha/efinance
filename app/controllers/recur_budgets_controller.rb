@@ -28,7 +28,9 @@ class RecurBudgetsController < ApplicationController
     @budgets= RecurBudget.where(:temp_budget_plan_id =>@temp_budget_plan.id).all  
     @user_budgets=RecurBudget.where(:temp_budget_plan_id=> @temp_budget_plan.id)
     set_recur_period
-
+    respond_to do |format|
+      format.html{}
+    end
   end
 
   # GET /budgets/1/edit
@@ -109,7 +111,7 @@ class RecurBudgetsController < ApplicationController
     def invalid_budget
       flash[:notice]= "Invalid Budget"
       logger.error "Attempting to access invalid budget"
-      render "budgets/redirect"
+      render "recur_budgets/redirect"
     end
     def set_recur_period
       @temp_budget_plan= TempBudgetPlan.find(session[:budget_plan_id])

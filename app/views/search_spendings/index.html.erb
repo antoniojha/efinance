@@ -1,0 +1,25 @@
+<% content_for :left do%>
+<% @transac_period=[["since last week",1],["since this month",2],["since last month",3],["since 3 months ago",4],["since 6 months ago",5],["all",6]]%>
+<p>
+	<% if @spendings.count>0%>
+		<%= form_tag('search_spending', :remote=>true) do%>
+		<%= select_tag "transac_period", options_for_select(@transac_period),{:prompt=>"select a period"} %>
+		<%= submit_tag "Search"%>
+		<%end%>
+	<%end%>
+</p>
+<%end%>
+<h1>Listing spendings</h1>
+
+<% @transac_period=[["since last week",1],["since this month",2],["since last month",3],["since 3 months ago",4],["since 6 months ago",5],["all",6]]%>
+
+	<% if @spendings.count>0%>
+	<div id="spending_list">
+		<%= render "search_spendings/spending_list"%>
+	</div><br>
+
+<%else%>
+<p>No Transactions entered</p>
+<%end%>
+
+<%= link_to 'Back', profile_url(session[:username])%>
