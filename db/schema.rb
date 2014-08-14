@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140801000424) do
+ActiveRecord::Schema.define(version: 20140813235744) do
+
+  create_table "advance_searches", force: true do |t|
+    t.string   "keyword"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.float    "minimum_price"
+    t.float    "maximum_price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "hidden_value"
+  end
 
   create_table "budget_plans", force: true do |t|
     t.decimal  "budget_amount",        precision: 8, scale: 2

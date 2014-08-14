@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Keyword:</strong>
+  <%= @advance_search.keyword %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @advance_search.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @advance_search.end_date %>
+</p>
+
+<p>
+  <strong>Minimum price:</strong>
+  <%= @advance_search.minimum_price %>
+</p>
+
+<p>
+  <strong>Maximum price:</strong>
+  <%= @advance_search.maximum_price %>
+</p>
+<p> is adv search is <%=@advance_search.hidden_value%></p>
+<%= link_to 'Edit', edit_advance_search_path(@advance_search) %> |
+<%= link_to 'Back', advance_searches_path %>
+
+

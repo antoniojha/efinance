@@ -40,11 +40,12 @@ class Spending < ActiveRecord::Base
       errors.add(:transaction_date, "can't be in the future")
     end
   end
-  def self.find_spendings(condition_num,start_date,user_id)
-      if condition_num==6
-        where(:user_id=>user_id).order(:transaction_date_d).reverse 
+  def self.find_spendings(start_date,user_id)
+    
+      if start_date
+        where("transaction_date_d > ?",start_date-1).where(:user_id=>user_id).order(:transaction_date_d).reverse
       else
-        where("transaction_date_d > ?",start_date-1).where(:user_id=>user_id).order(:transaction_date_d).reverse 
+        where(:user_id=>user_id).order(:transaction_date_d).reverse  
       end 
   end
 

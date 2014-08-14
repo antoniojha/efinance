@@ -2,37 +2,27 @@
 <% @transac_period={"since last week"=>1,"since this month"=>2,"since last month"=>3,"since 3 months ago"=>4,"since 6 months ago"=>5,"all"=>6}%>
 <p>
 	<div align="center" class="alert alert-info">Today is <%=Date.current%></div>
-	<div align="center"><h1>Search Form</h1></div>
-	<% if @spendings.count>0%>
-		<%= form_tag spendings_path, :method=>'get' do%>
-		<%= select_tag "transac_period", options_for_select(@transac_period,params[:transac_period]) %>
-		
-		<%= submit_tag "Search", :name=> nil%>
-		<%end%>
-		Advanced Search? <%=check_box_tag :advance_search%>
-		<div id="advance_search_form">
-		<%= form_tag spendings_path, :method=>'get' do%>
-		Advance search
-		
-		<%= submit_tag "Search", :name=> nil%>
-		<%end%>
-		</div>
-	<%end%>
+	<div id="form">
+		<%=render "search_form"%>
+	</div>
 </p>
 <%end%>
 <h1>Listing spendings</h1>
 
-	<% if @spendings.count>0%>
+<% if @spendings.count>0%>
 	<p><strong>Download:</strong>
 	<%=link_to "CSV", spendings_path(format:"csv", transac_period:@params_period)%>
 	<%=link_to "Excel", spendings_path(format:"xls", transac_period:@params_period)%></p>
-	
+	<div class="alert-success" role="alert" id="date_info" align="left">
+		<p>Transaction from <%=@start_date.strftime('%m/%d/%Y')%> to <%=@end_date.strftime('%m/%d/%Y')%>.</p>
+	</div>
 	<div id="spending_list">
 		<%= render "spending_list"%>
 	</div><br>
 	
 <%else%>
-<p>No Transactions entered</p>
+
+<p>No Transactions entered in <%=@text%></p>
 <%end%>
 
 <%= link_to 'Back', profile_url(session[:username])%>

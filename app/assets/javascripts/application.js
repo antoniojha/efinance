@@ -28,14 +28,37 @@ $(document).ready(function() {
 	$('#reset').click(function(){
 		$('#budget_transaction_date').removeAttr('disabled');
 	});//	
-	$(function(){
-		$('#spending_transaction_date').datepicker({ dateFormat: 'mm/dd/yy' });
-	});//prompts date picker in spending/new form
-	$('#advance_search').click(function(){
-	//	$('#advance_search_form').attr('display','visible')
+	
+	$('#spending_transaction_date').datepicker({ dateFormat: 'mm/dd/yy' });//prompts date picker in spending/new form
+ // enable tabbable tabs
+	$('#myTab a').click(function (e) {
+		  e.preventDefault();
+		  $(this).tab('show');
+		  var form_activated='#'+$(this).attr('href').slice(1);
+		  if(form_activated=='#search_form'){
+			$('#search_form').show();
+		  	$('#advance_search_form').hide();
+		  }
+		  else if (form_activated=='#advance_search_form'){
+			$('#search_form').hide();
+		  	$('#advance_search_form').show();
+		  }
 	});
 });
-
+/*function search_form(event){
+	$('#advance_search_form').hide();
+	$('#search_form').show();
+	alert(event.target.parent().nodeName);
+	event.target.parent().attr('class','active');
+	alert("searchform");
+}
+function advance_search_form(event){
+	$('#advance_search_form').show();
+	$('#search_form').hide();
+	alert(event.target.parent().nodeName);
+	event.target.parent().attr('class','active');
+	alert("advance search form");
+}*/
 function show_message(){
 	$('#user_password').focus(function(){
 		$('#password_description').show();

@@ -1,0 +1,35 @@
+<h1>Listing advance_searches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Keyword</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Minimum price</th>
+      <th>Maximum price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @advance_searches.each do |advance_search| %>
+      <tr>
+        <td><%= advance_search.keyword %></td>
+        <td><%= advance_search.start_date %></td>
+        <td><%= advance_search.end_date %></td>
+        <td><%= advance_search.minimum_price %></td>
+        <td><%= advance_search.maximum_price %></td>
+        <td><%= link_to 'Show', advance_search %></td>
+        <td><%= link_to 'Edit', edit_advance_search_path(advance_search) %></td>
+        <td><%= link_to 'Destroy', advance_search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Advance search', new_advance_search_path %>

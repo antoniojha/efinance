@@ -4,19 +4,48 @@ require 'date'
 class SpendingsController < ApplicationController
   skip_before_filter :verify_authenticity_token  
   before_action :set_spending, only: [:show, :receipt, :edit, :update, :destroy]
-  
   # GET /spendings
   # GET /spendings.json
 
   def index
-    @params_period=params[:transac_period]
-    search_date(params[:transac_period])
+    if params[:transac_period]
+      @params_period=params[:transac_period].to_i
+    else
+      @params_period=nil
+    end
+    @spendings=nil
+  
+    if @params_period!=6
+      #return the start date based on params[:transac_period]. If there is no parameter, use 7 days ago as default.
+      @start_date= return_start_date(@params_period)
+      @spendings=Spending.find_spendings(@start_date,session[:user_id]).paginate(page:params[:page])   
+    else
+      @spendings=Spending.all.where(:user_id=>session[:user_id]).paginate(page:params[:page])
+      @start_date=@spendings.last.transaction_date_d
+    end
+    # in case that user hasn't input anything in the specified period.
+    if (@spendings!=nil &&@spendings.count>0)
+      @start_date=@spendings.last.transaction_date_d
+      @end_date=@spendings.first.transaction_date_d
+    end
+    @text=return_text(@params_period)
+    # Advance search implementation
+   
+    if params[:id]
+      @advance_search=AdvanceSearch.find(params[:id])
+      @spendings=@advance_search.transactions.paginate(page:params[:page])
+     # @spendings=Spending.find_by_id(params[:id]).paginate(page:params[:page])
+      @start_date=@spendings.last.transaction_date_d
+      @end_date=@spendings.first.transaction_date_d
+    else
+      @advance_search=AdvanceSearch.new
+    end
+    
     respond_to do |format|
       format.html{}
       format.csv{send_data Spending.to_csv(@spendings)}
       format.xls
-      format.js{}
-    end
+     end
   end
 
   # GET /spendings/1
@@ -39,18 +68,16 @@ class SpendingsController < ApplicationController
   # POST /spendings.json
   def create
     @spending = Spending.new(spending_params)
-    
-    respond_to do |format|
-      if @spending.save    
-        format.html { redirect_to new_spending_url, notice: 'Spending was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @spending }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @spending.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @spending.save 
+          format.html { redirect_to new_spending_url, notice: 'Spending was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @spending }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @spending.errors, status: :unprocessable_entity }
+        end
       end
-    end
-  end
-
+  end 
   # PATCH/PUT /spendings/1
   # PATCH/PUT /spendings/1.json
   def update
@@ -90,9 +117,13 @@ class SpendingsController < ApplicationController
     def spending_params
       params.require(:spending).permit(:title, :description, :image_url, :price, :transaction_date, :picture, :category).merge(:user_id=> session[:user_id])
     end
-    def search_date(transac_period)
+    def advance_search_params
+      params.require(:advance_search).permit(:keyword, :start_date, :end_date, :minimum_price, :maximum_price, :hidden_value)
+    end
+    def return_start_date(transac_period)
       end_date= Date.current
-      x=transac_period.to_i
+      x=transac_period
+      
       if transac_period
         if x==1
           start_date=end_date-7
@@ -104,10 +135,28 @@ class SpendingsController < ApplicationController
           start_date=end_date.ago(3.month).beginning_of_month  
         elsif x==5
           start_date=end_date.ago(6.month).beginning_of_month
+        elsif x==6
+          start_date=nil
         end  
       else
         start_date=end_date-7  
       end
-      @spendings=Spending.find_spendings(x,start_date,session[:user_id]).paginate(page:params[:page])
+    end
+    def return_text(params_period)
+      if params_period==1
+        text="last week"
+      elsif params_period==2
+        text="this month"
+      elsif params_period==3
+        text="last month"
+      elsif params_period==4
+        text="3 months ago"
+      elsif params_period==5
+        text="6 months ago"
+      elsif params_period==6
+        text="beginning"   
+      else
+        text="last 7 days"     
+      end
     end
 end

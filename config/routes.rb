@@ -1,4 +1,6 @@
 WebFinance::Application.routes.draw do
+  resources :advance_searches
+
   # You can have the root of your site routed with "root"
 
  resources :spendings

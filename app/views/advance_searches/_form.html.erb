@@ -1,0 +1,37 @@
+<%= form_for(@advance_search) do |f| %>
+  <% if @advance_search.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@advance_search.errors.count, "error") %> prohibited this advance_search from being saved:</h2>
+
+      <ul>
+      <% @advance_search.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :keyword %><br>
+    <%= f.text_field :keyword %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br>
+    <%= f.datetime_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br>
+    <%= f.datetime_select :end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :minimum_price %><br>
+    <%= f.text_field :minimum_price %>
+  </div>
+  <div class="field">
+    <%= f.label :maximum_price %><br>
+    <%= f.text_field :maximum_price %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
