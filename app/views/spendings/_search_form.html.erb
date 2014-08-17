@@ -1,8 +1,8 @@
 <ul id="myTab" class="nav nav-tabs" role="tablist">
-	<li class="active"><%=link_to "Search Form", '#search_form' %></li>
-	<li><%=link_to "Advance Search Form",'#advance_search_form'%></li>
+	<li class=<%=@normal_search_class%>><%=link_to "Search Form", '#search_form' %></li>
+	<li class=<%=@advance_search_class%>><%=link_to "Advance Search Form",'#advance_search_form'%></li>
 </ul>
-<div align="left" id="search_form">
+<div align="left" id="search_form" class=<%=@normal_search_class2%>>
 	<br><br>
 	<strong>Select transactions:</strong><br><br>
 	<%= form_tag spendings_path, :method=>'get' do%>
@@ -10,9 +10,9 @@
 		<%= submit_tag "Search", :name=> nil%>
 	<%end%>
 </div>
-<div align="left" id="advance_search_form">
+<div align="left" id="advance_search_form" class=<%=@advance_search_class2%>>
 	<br><br>
-	<%= form_for(@advance_search) do |f| %>
+	<%= form_for(@advance_search,url:{controller:"advance_searches",action:"create"},method:"post") do |f| %>
   		<% if @advance_search.errors.any? %>
     	<div id="error_explanation">
      		 <h2><%= pluralize(@advance_search.errors.count, "error") %> prohibited this advance_search from being saved:</h2>
@@ -27,12 +27,20 @@
   		<table>
 			<tr>
 				<td width="50px"><strong>From:</strong></td>
-				<td><%=f.date_select :start_date%></td>
+				<td><div class="form-group">
+						<div class="input-group date" id="advance_search_start_date1"><%= f.text_field :start_date, :class=>"form-control"%> 
+						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+				</td>
 			</tr>
 			<tr class="blank_row"></tr>
 			<tr>
 				<td><strong>To:</strong></td>
-				<td><%=f.date_select :end_date%></td>
+				<td><div class="input-group date"><%= f.text_field :end_date, :class=>"form-control"%> 
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+					</div>
+				</td>
 			</tr>
 		</table><br>
 		<strong>Search Title:</strong>
@@ -41,9 +49,9 @@
 		
 		<table width="100%">
 			<tr>
-				<td width="40%"><%=f.text_field :minimum_price,{size:7,class:"form-control"}%></td>
+				<td width="40%"><div class="input-group"><span class="input-group-addon">$</span><%=f.text_field :minimum_price,{size:7,class:"form-control"}%></div></td>
 				<td width="5%"><div align="center"> - </div></td>
-				<td width="40%"><%=f.text_field :maximum_price,{size:7,class:"form-control"}%></td>		
+				<td width="40%"><div class="input-group"><span class="input-group-addon">$</span><%=f.text_field :maximum_price,{size:7,class:"form-control"}%></div></td>		
 			</tr>
 		</table>	
 		<%=f.hidden_field :hidden_value, :value=>'true'%>	

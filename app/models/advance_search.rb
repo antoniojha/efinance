@@ -3,8 +3,8 @@ class AdvanceSearch < ActiveRecord::Base
   def transactions
     @transactions||=find_transactions
   end
+  ####
   private
-  
   def find_transactions
     Spending.where(conditions)
   end
@@ -12,7 +12,7 @@ class AdvanceSearch < ActiveRecord::Base
   ["spendings.title LIKE ?", "%#{keyword}%"] unless keyword.blank?
   end
   def minimum_price_conditions
-    ["spendings.price >= ?", minimum_price] unless minimum_price.blank?
+  ["spendings.price >= ?", minimum_price] unless minimum_price.blank?
   end
   def maximum_price_conditions
   ["spendings.price <= ?", maximum_price] unless maximum_price.blank?

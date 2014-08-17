@@ -34,11 +34,22 @@ class SpendingsController < ApplicationController
     if params[:id]
       @advance_search=AdvanceSearch.find(params[:id])
       @spendings=@advance_search.transactions.paginate(page:params[:page])
-     # @spendings=Spending.find_by_id(params[:id]).paginate(page:params[:page])
       @start_date=@spendings.last.transaction_date_d
       @end_date=@spendings.first.transaction_date_d
+      #define class to display tab
+      @normal_search_class=""
+      @advance_search_class="active"     
+      # define class to display normal search form or advance_search form
+      @normal_search_class2="no_display"
+      @advance_search_class2=""
     else
       @advance_search=AdvanceSearch.new
+      #define class to display tab
+      @normal_search_class="active"
+      @advance_search_class=""     
+      # define class to display normal search form or advance_search form
+      @normal_search_class2=""
+      @advance_search_class2="no_display"
     end
     
     respond_to do |format|

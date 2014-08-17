@@ -18,7 +18,9 @@
 //= require_tree .
 //= require_tree ../../../vendor/assets/javascripts/.
 
-$(document).ready(function() {
+$(document).on('page:load',ready);
+$(document).ready(ready);
+function ready() {
 	$('#recur_budget_begin_or_end_of_month_1').click(function(){
 		$('#budget_transaction_date').attr('disabled','disabled');
 	});// disable the text box for date input of the recur_budget/new form if selected	
@@ -30,6 +32,8 @@ $(document).ready(function() {
 	});//	
 	
 	$('#spending_transaction_date').datepicker({ dateFormat: 'mm/dd/yy' });//prompts date picker in spending/new form
+	$('#advance_search_start_date1').datepicker({ dateFormat: 'mm/dd/yy' });//prompts date picker in spending/_search_form
+	$('#advance_search_end_date').datepicker({ dateFormat: 'mm/dd/yy' });//prompts date picker in spending/_search_form
  // enable tabbable tabs
 	$('#myTab a').click(function (e) {
 		  e.preventDefault();
@@ -44,7 +48,7 @@ $(document).ready(function() {
 		  	$('#advance_search_form').show();
 		  }
 	});
-});
+}
 /*function search_form(event){
 	$('#advance_search_form').hide();
 	$('#search_form').show();

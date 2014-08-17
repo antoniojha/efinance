@@ -26,9 +26,9 @@
   	<div class="field">
     	<%= f.label "Transaction Date:" %><i>(m/d/y)</i><br>
     	<% if @spending.transaction_date%>
- 			<%= f.text_field :transaction_date, :class=>"transaction_date form-control"%>
+ 			<%= f.text_field :transaction_date, :class=>"form-control"%>
  		<%else%>
- 			<%= f.text_field :transaction_date, :class=>"transaction_date form-control"%>
+ 			<%= f.text_field :transaction_date, :class=>"form-control"%>
  		<%end%>
  	</div>
   	<div class="field">
