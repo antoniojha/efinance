@@ -15,6 +15,8 @@ class Spending < ActiveRecord::Base
   # this is actually two validation tests in one line
   validate :check_if_future_transaction_date, if: :check_and_validate_date
   validate :check_and_validate_date
+  
+  before_save{self.category=category.downcase}
   # this is used for importing data from Excel since transaction_date can be date format
   def check_transaction_date_is_string
     if transaction_date

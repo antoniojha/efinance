@@ -1,44 +1,14 @@
 require 'date'
+require 'cgi'
 class ProfilesController < ApplicationController
-
 
   def new
     @spendings=[]
     @budgets=[]
     @spendings_p=[]
-
     @budget=TempBudgetPlan.find_by(:user_id=>session[:user_id])   
     if @budget 
-    @spending_food=Spending.sum(:price, :conditions=>{:category=>"Food Budget", :user_id=>session[:user_id]})
-    @spending_food_p=@spending_food/@budget.food_budget*100
-    @spendings_p << @spending_food_p
-    @spendings << @spending_food
-    @budgets << @budget.food_budget
-    @spending_finance=Spending.sum(:price, :conditions=>{:category=>"Finance Budget", :user_id=>session[:user_id]})
-    @spending_finance_p=@spending_finance/@budget.finance_budget*100
-    @spendings_p << @spending_finance_p
-    @spendings << @spending_finance
-    @budgets << @budget.finance_budget
-    @spending_shopping=Spending.sum(:price, :conditions=>{:category=>"Shopping Budget", :user_id=>session[:user_id]})
-    @spending_shopping_p=@spending_shopping/@budget.shopping_budget*100
-    @spendings_p << @spending_shopping_p
-    @spendings << @spending_shopping
-    @budgets << @budget.shopping_budget
-    @spending_auto=Spending.sum(:price, :conditions=>{:category=>"Auto Budget", :user_id=>session[:user_id]})
-    @spending_auto_p=@spending_auto/@budget.auto_budget*100
-    @spendings_p << @spending_auto_p    
-    @spendings << @spending_auto
-    @budgets << @budget.auto_budget
-    @spending_entertainment=Spending.sum(:price, :conditions=>{:category=>"Entertainment Budget", :user_id=>session[:user_id]})
-    @spending_entertainment_p=@spending_entertainment/@budget.entertainment_budget*100
-    @spendings << @spending_entertainment
-    @spendings_p << @spending_entertainment_p
-    @budgets << @budget.entertainment_budget
-    @spending_other=Spending.sum(:price, :conditions=>{:category=>"Other Budget", :user_id=>session[:user_id]})
-    @spending_other_p=@spending_other/@budget.other_budget*100
-    @spendings_p << @spending_other_p
-    @spendings << @spending_other
-    @budgets << @budget.other_budget   
+      set_overview_params
     end 
   end
   
@@ -99,5 +69,53 @@ class ProfilesController < ApplicationController
 
     def budget_params
       params.require(:budget).permit(:title, :category, :price, :recur_week_period, :transaction_date, :user_id).merge(:temp_budget_plan_id=>session[:budget_plan_id])
+    end
+    def set_overview_params
+      current_month_begin=Date.current.beginning_of_month
+      current_month_spendings=Spending.where("transaction_date_d > ?", current_month_begin)
+      @spending_food=current_month_spendings.sum(:price, :conditions=>{:category=>"food budget", :user_id=>session[:user_id]})
+      @spending_food_p=@spending_food/@budget.food_budget*100
+      @spendings_p << @spending_food_p
+      @spendings << @spending_food
+      @budgets << @budget.food_budget
+      @spending_finance=current_month_spendings.sum(:price, :conditions=>{:category=>"finance budget", :user_id=>session[:user_id]})
+      @spending_finance_p=@spending_finance/@budget.finance_budget*100
+      @spendings_p << @spending_finance_p
+      @spendings << @spending_finance
+      @budgets << @budget.finance_budget
+      @spending_shopping=current_month_spendings.sum(:price, :conditions=>{:category=>"shopping budget", :user_id=>session[:user_id]})
+      @spending_shopping_p=@spending_shopping/@budget.shopping_budget*100
+      @spendings_p << @spending_shopping_p
+      @spendings << @spending_shopping
+      @budgets << @budget.shopping_budget
+      @spending_auto=current_month_spendings.sum(:price, :conditions=>{:category=>"auto budget", :user_id=>session[:user_id]})
+      @spending_auto_p=@spending_auto/@budget.auto_budget*100
+      @spendings_p << @spending_auto_p    
+      @spendings << @spending_auto
+      @budgets << @budget.auto_budget
+      @spending_entertainment=current_month_spendings.sum(:price, :conditions=>{:category=>"entertainment budget", :user_id=>session[:user_id]})
+      @spending_entertainment_p=@spending_entertainment/@budget.entertainment_budget*100
+      @spendings << @spending_entertainment
+      @spendings_p << @spending_entertainment_p
+      @budgets << @budget.entertainment_budget
+      @spending_other=current_month_spendings.sum(:price, :conditions=>{:category=>"other budget", :user_id=>session[:user_id]})
+      @spending_other_p=@spending_other/@budget.other_budget*100
+      @spendings_p << @spending_other_p
+      @spendings << @spending_other
+      @budgets << @budget.other_budget   
+      @months=[]
+      @total_monthly_spendings=[]
+      time=Date.current.beginning_of_year
+      while time<Date.current
+        month=time.strftime('%b')
+        begin_date=time.beginning_of_month
+        end_date=time.end_of_month
+        @months << month
+        spending=Spending.where("transaction_date_d >= ? and transaction_date_d <= ? and price <=?",begin_date, end_date,0).sum(:price, :conditions=>{:user_id=>session[:user_id]})
+        @total_monthly_spendings << spending.to_f.round(2)*(-1)
+        time=time.next_month
+      end
+      @months=@months.to_s.html_safe
+      @total_monthly_spendings=@total_monthly_spendings.to_s.html_safe
     end
 end

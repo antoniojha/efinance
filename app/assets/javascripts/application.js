@@ -32,8 +32,8 @@ function ready() {
 	});//	
 	
 	$('#spending_transaction_date').datepicker({ dateFormat: 'mm/dd/yy' });//prompts date picker in spending/new form
-	$('#advance_search_start_date1').datepicker({ dateFormat: 'mm/dd/yy' });//prompts date picker in spending/_search_form
-	$('#advance_search_end_date').datepicker({ dateFormat: 'mm/dd/yy' });//prompts date picker in spending/_search_form
+	$('#advance_search_start_date_string').datepicker({ dateFormat: 'mm/dd/yy' });//prompts date picker in spending/_search_form
+	$('#advance_search_end_date_string').datepicker({ dateFormat: 'mm/dd/yy' });//prompts date picker in spending/_search_form
  // enable tabbable tabs
 	$('#myTab a').click(function (e) {
 		  e.preventDefault();
@@ -48,7 +48,21 @@ function ready() {
 		  	$('#advance_search_form').show();
 		  }
 	});
+	$('#chart_tab a').click(function (e) {
+		  e.preventDefault();
+		  $(this).tab('show');
+		  var form_activated='#'+$(this).attr('href').slice(1);
+		  toggle_chart_menu(form_activated);
+	});
+	
 }
+function toggle_chart_menu(id){
+	$('#available_budget').hide();
+	$('#monthly_spending').hide();
+	$('#spending_breakdown').hide();
+	$(id).show();
+}
+
 /*function search_form(event){
 	$('#advance_search_form').hide();
 	$('#search_form').show();

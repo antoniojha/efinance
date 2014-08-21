@@ -28,8 +28,9 @@
 			<tr>
 				<td width="50px"><strong>From:</strong></td>
 				<td><div class="form-group">
-						<div class="input-group date" id="advance_search_start_date1"><%= f.text_field :start_date, :class=>"form-control"%> 
-						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						<div class="input-group" >
+							<%= f.text_field :start_date_string, :class=>"form-control"%> 
+							<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
 						</div>
 					</div>
 				</td>
@@ -37,7 +38,7 @@
 			<tr class="blank_row"></tr>
 			<tr>
 				<td><strong>To:</strong></td>
-				<td><div class="input-group date"><%= f.text_field :end_date, :class=>"form-control"%> 
+				<td><div class="input-group date"><%= f.text_field :end_date_string, :class=>"form-control"%> 
 					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 					</div>
 				</td>

@@ -24,8 +24,9 @@
   <strong>Maximum price:</strong>
   <%= @advance_search.maximum_price %>
 </p>
-<p> is adv search is <%=@advance_search.hidden_value%></p>
+
 <%= link_to 'Edit', edit_advance_search_path(@advance_search) %> |
 <%= link_to 'Back', advance_searches_path %>
 
 
+<%=render :partial=>"spending", collection:@advance_search.transactions%>
