@@ -1,8 +1,9 @@
 <%year= Date.current.strftime('%Y')%>
+<%month= Date.current.strftime('%b')%>
 <script type="text/javascript" charset="utf-8">
   $(function () {
     new Highcharts.Chart({
-      chart: { renderTo: 'orders_chart' ,
+      chart: { renderTo: 'spending_chart' ,
       		   type: 'column'
       },
       title: { text: 'Spending in <%=year%>'},
@@ -13,25 +14,107 @@
             title: {text: 'Dollars ($)'}
       },
       series: [{
-            name: '<%=session[:username]%>',
+      		name: '<%=session[:username]%>', 
             data: <%=@total_monthly_spendings%>
         }]
     });
   });
+  $(function () {
+    new Highcharts.Chart({
+      chart: { renderTo: 'net_income_chart' ,
+      		   type: 'column'
+      },
+
+      title: { text: 'Net Income in <%=year%>',
+      		   align:'center',
+      },
+      series: [{
+      		name: '<%=session[:username]%>', 
+            data: <%=(@total_monthly_net_income.delete!'"').html_safe%>
+        }]
+    });
+    new Highcharts.Chart({
+      chart: { renderTo: 'pie_chart' ,
+      		   type: 'pie'
+      },
+
+      title: { text: 'Net Spending breakdown in <%=month%>, <%=year%>'},
+      tooltip: {
+                pointFormat: '<b>{point.percentage:.1f}%</b>'
+      },
+      xAxis: { 
+              categories: <%=(@months)%>
+      },
+      yAxis: {
+            title: {text: 'Dollars ($)'}
+      },
+        plotOptions: {
+            pie: {
+                dataLabels: {
+                    enabled: true,
+                    distance: -50,
+                    style: {
+                        fontWeight: 'bold',
+                        color: 'white',
+                        textShadow: '0px 1px 2px black'
+                    }
+                },
+                startAngle: -90,
+                endAngle: 90,
+                center: ['50%', '75%']
+            }
+        },
+      series: [{
+            name: '% Spending',
+            innerSize: '50%',
+            data: <%=(@spendings_in_categories.delete!'"').html_safe%>
+        }]
+    });
+  });
 </script>
+<% content_for :left do%>
+<% if params[:id]%>
+<div id="search_form_pie" align="center">
+<%else%>
+<div id="search_form_pie" class="non_display" align="center">
+<%end%>
+	<strong>Search Form</strong>
+	<%=render "spendings/advance_search_form"%>
+</div>
+<%end%>
 <% if notice%>
 	<p id="notice"><%= notice %></p>
 <% end %>
+<% if params[:id]%>
+	<% class_available_budget=""%>
+	<% class_spending_breakdown="active"%>
+<% else%>
+	<% class_available_budget="active"%>
+	<% class_spending_breakdown=""%>
+<%end%>
 <ul id= "chart_tab" class="nav nav-tabs" role="tablist">
-	<li class="active"><%=link_to 'Available Budget','#available_budget'%></li>
+	<li class=<%=class_available_budget%>><%=link_to 'Available Budget','#available_budget'%></li>
 	<li><%=link_to 'Monthly Spending','#monthly_spending'%></li>
-	<li><%=link_to 'Spending Breakdown','#spending_breakdown'%></li>
+	<li class=<%=class_spending_breakdown%>><%=link_to 'Spending Breakdown','#spending_breakdown'%></li>
 </ul>		
-
+<% if params[:id]%>
+<div id="available_budget" class="non_display">
+<%else%>
 <div id="available_budget">
+<%end%>
+	<br>
 	<%=render "available_budget"%>
 </div>
 <div id="monthly_spending" class="non_display">
-	<div id="orders_chart" style="width: 560px; height: 300px;"></div>
+	<br>
+	<div id="spending_chart" style="width: 600px; height: auto;"></div><br>
+	<div id="net_income_chart" style="width: 600px; height: auto;"></div><br>
 </div>
+<% if params[:id]%>
+<div id="spending_breakdown">
+<%else%>
 <div id="spending_breakdown" class="non_display">
+<%end%>
+	<br>
+	<div id="pie_chart" style="width: 600px; height: auto;"></div><br>
+</div>

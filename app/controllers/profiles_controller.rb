@@ -7,6 +7,12 @@ class ProfilesController < ApplicationController
     @budgets=[]
     @spendings_p=[]
     @budget=TempBudgetPlan.find_by(:user_id=>session[:user_id])   
+    # used to conduct search for transaction from spending/advance_search
+    if params[:id]
+      @advance_search=AdvanceSearch.find(params[:id]) 
+    else
+      @advance_search=AdvanceSearch.new
+    end
     if @budget 
       set_overview_params
     end 
@@ -105,17 +111,57 @@ class ProfilesController < ApplicationController
       @budgets << @budget.other_budget   
       @months=[]
       @total_monthly_spendings=[]
+      @total_monthly_net_income=[]
+      @spending_by_category=[]
       time=Date.current.beginning_of_year
+      # The analysis is for spending/net income starting at 1st month of the current year and ending at the current month
       while time<Date.current
         month=time.strftime('%b')
         begin_date=time.beginning_of_month
-        end_date=time.end_of_month
+        end_date=time.end_of_month     
         @months << month
+        # query for monthly spending
         spending=Spending.where("transaction_date_d >= ? and transaction_date_d <= ? and price <=?",begin_date, end_date,0).sum(:price, :conditions=>{:user_id=>session[:user_id]})
+        # query for monthly net income
+        net_income=Spending.where("transaction_date_d >= ? and transaction_date_d <= ?",begin_date, end_date).sum(:price, :conditions=>{:user_id=>session[:user_id]})
         @total_monthly_spendings << spending.to_f.round(2)*(-1)
+        
+        if net_income <0
+          string=""
+          string <<"{y:".html_safe
+          string << net_income.to_f.round(2).to_s
+          string << ",color:'red'}"
+          @total_monthly_net_income << string
+        else
+          @total_monthly_net_income << net_income.to_f.round(2)    
+        end      
         time=time.next_month
       end
+      
       @months=@months.to_s.html_safe
       @total_monthly_spendings=@total_monthly_spendings.to_s.html_safe
+      @total_monthly_net_income=@total_monthly_net_income.to_s.html_safe
+      
+      # The analysis is for spending breakdown based on different category
+      categories=["finance budget","food budget", "auto budget", "shopping budget", "entertainment budget", "other budget"]
+      @spendings_in_categories=[]
+      this_month_begin=Date.current.beginning_of_month
+      total=@total_monthly_spendings.last.to_f
+      
+      categories.each do |c|
+        temp=[]
+        s=Spending.where("transaction_date_d > ? and category LIKE ?", this_month_begin, c).sum(&:price)
+        if (s/total >=0.1)
+          temp=[]
+          string="'"+c+"',"+s.to_f.round(2).to_s
+          temp << string
+          @spendings_in_categories << temp
+        else
+          string="{name:'"+c+"',y:0.7, dataLabels:{enabled:false}}"
+          @spendings_in_categories << string
+        end
+       
+      end
+      @spendings_in_categories=@spendings_in_categories.to_s.html_safe
     end
 end

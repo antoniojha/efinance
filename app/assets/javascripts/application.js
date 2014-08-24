@@ -60,7 +60,11 @@ function toggle_chart_menu(id){
 	$('#available_budget').hide();
 	$('#monthly_spending').hide();
 	$('#spending_breakdown').hide();
+	$('#search_form_pie').hide();
 	$(id).show();
+	if (id=='#spending_breakdown'){
+		$('#search_form_pie').show();
+	}
 }
 
 /*function search_form(event){

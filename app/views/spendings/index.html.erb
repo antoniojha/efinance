@@ -3,7 +3,12 @@
 <p>
 	<div align="center" class="alert alert-info">Today is <%=Date.current%></div>
 	<div id="form">
+		<ul id="myTab" class="nav nav-tabs" role="tablist">
+			<li class=<%=@normal_search_class%>><%=link_to "Search Form", '#search_form' %></li>
+			<li class=<%=@advance_search_class%>><%=link_to "Advance Search Form",'#advance_search_form'%></li>
+		</ul>
 		<%=render "search_form"%>
+		<%=render "advance_search_form"%>
 	</div>
 </p>
 <%end%>
@@ -13,9 +18,12 @@
 	<p><strong>Download:</strong>
 	<%=link_to "CSV", spendings_path(format:"csv", transac_period:@params_period)%>
 	<%=link_to "Excel", spendings_path(format:"xls", transac_period:@params_period)%></p>
-	<div class="alert-success" role="alert" id="date_info" align="left">
+	<div class="alert-success" role="alert" id="date_info" align="center">
 		<p>Transaction from <%=@start_date.strftime('%m/%d/%Y')%> to <%=@end_date.strftime('%m/%d/%Y')%>.</p>
 	</div>
+	<% if notice%>
+	<p id="notice"><%= notice %></p>
+	<% end %>
 	<div id="spending_list">
 		<%= render "spending_list"%>
 	</div><br>

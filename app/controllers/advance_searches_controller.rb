@@ -29,7 +29,12 @@ class AdvanceSearchesController < ApplicationController
 
     respond_to do |format|
       if @advance_search.save
-        format.html { redirect_to spendings_url(:id=>@advance_search), notice: 'Advance search was successfully created.' }
+        if request.env['HTTP_REFERER'].include? overview_url
+            format.html { redirect_to overview_url(:id=>@advance_search), notice: 'Search was successful'}
+        else
+            format.html { redirect_to spendings_url(:id=>@advance_search), notice: 'Advance search was successfully created.'}
+        end
+     #   format.html { redirect_to :back,params:{:id=>@advance_search}, notice: 'Advance search was successfully created.' }
         format.json { render action: 'show', status: :created, location: @advance_search }
       else
         format.html { render action: 'new' }
