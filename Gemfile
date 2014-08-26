@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+# This gem is used for rss feed parsing
+gem 'pauldix-feedzirra'
+
 # Paperclip, used to upload pictures to Amazon S3
 gem 'paperclip'
 

@@ -2,7 +2,7 @@
 
 <% @spendings_p.zip(@budgets,@category_type,@spendings).each do |s,b,budget_cat,s2|%>
 <% bar_type=cycle('progress-bar-success','progress-bar-info', 'progress-bar-warning', 'progress-bar-danger')%>
-<div style="width:60%">
+<div style="width:100%">
 	<span style="padding: 3px; float: left; width: 150px; text-align: center;"><b><%=budget_cat%></b></span>
 	<% if b-s2 >=0%>
 	<span style="padding: 3px; float: right; width: 200px; text-align: center;"><%=number_to_currency(b-s2)%> left</span>

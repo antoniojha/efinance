@@ -25,20 +25,33 @@
       		   type: 'column'
       },
 
-      title: { text: 'Net Income in <%=year%>',
+      title: {      			
+      		   text: 'Net Income in <%=year%>',
       		   align:'center',
+      },
+      xAxis: { 
+              categories: <%=(@months)%>
+      },
+      yAxis: {
+            title: {text: 'Dollars ($)'}
       },
       series: [{
       		name: '<%=session[:username]%>', 
             data: <%=(@total_monthly_net_income.delete!'"').html_safe%>
         }]
     });
+    <% if (@total >0)%>
     new Highcharts.Chart({
       chart: { renderTo: 'pie_chart' ,
       		   type: 'pie'
       },
 
-      title: { text: 'Net Spending breakdown in <%=month%>, <%=year%>'},
+      title: { 
+      	<%if @is_default%>
+      	text: 'Net Spending breakdown in <%=month%>, <%=year%>'},
+      	<%else%>
+      	text: 'Customized Net Spending breakdown'},
+      	<%end%>
       tooltip: {
                 pointFormat: '<b>{point.percentage:.1f}%</b>'
       },
@@ -70,6 +83,7 @@
             data: <%=(@spendings_in_categories.delete!'"').html_safe%>
         }]
     });
+    <%end%>
   });
 </script>
 <% content_for :left do%>
@@ -78,13 +92,14 @@
 <%else%>
 <div id="search_form_pie" class="non_display" align="center">
 <%end%>
-	<strong>Search Form</strong>
-	<%=render "spendings/advance_search_form"%>
-</div>
-<%end%>
 <% if notice%>
 	<p id="notice"><%= notice %></p>
 <% end %>
+<strong><h3>Search Form</h3></strong>
+	<%=render "spendings/advance_search_form"%>
+</div>
+<%end%>
+
 <% if params[:id]%>
 	<% class_available_budget=""%>
 	<% class_spending_breakdown="active"%>
@@ -116,5 +131,9 @@
 <div id="spending_breakdown" class="non_display">
 <%end%>
 	<br>
+	<% if (@total >0)%>
 	<div id="pie_chart" style="width: 600px; height: auto;"></div><br>
+	<%else%>
+	No Transaction were found!
+	<%end%>
 </div>

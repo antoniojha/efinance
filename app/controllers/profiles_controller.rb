@@ -138,30 +138,38 @@ class ProfilesController < ApplicationController
         time=time.next_month
       end
       
-      @months=@months.to_s.html_safe
-      @total_monthly_spendings=@total_monthly_spendings.to_s.html_safe
-      @total_monthly_net_income=@total_monthly_net_income.to_s.html_safe
+
       
       # The analysis is for spending breakdown based on different category
       categories=["finance budget","food budget", "auto budget", "shopping budget", "entertainment budget", "other budget"]
       @spendings_in_categories=[]
       this_month_begin=Date.current.beginning_of_month
-      total=@total_monthly_spendings.last.to_f
       
+      spending_temp=@advance_search.transactions.where(:user_id=>session[:user_id]).where("price <0")
       categories.each do |c|
         temp=[]
-        s=Spending.where("transaction_date_d > ? and category LIKE ?", this_month_begin, c).sum(&:price)
-        if (s/total >=0.1)
-          temp=[]
-          string="'"+c+"',"+s.to_f.round(2).to_s
-          temp << string
-          @spendings_in_categories << temp
+        if params[:id]
+          s=spending_temp.where("category LIKE?",c).sum(&:price)*(-1)
+          @total=spending_temp.sum(&:price)*(-1)
+          @is_default=false
         else
-          string="{name:'"+c+"',y:0.7, dataLabels:{enabled:false}}"
-          @spendings_in_categories << string
+          s=Spending.where("transaction_date_d > ? and category LIKE ? and price <?", this_month_begin, c,0).sum(&:price)*(-1)
+          @total=@total_monthly_spendings.last.to_f
+          @is_default=true
         end
-       
+          if (@total>0 && s/@total >=0.1)
+            temp=[]
+            string="'"+c+"',"+s.to_f.round(2).to_s
+            temp << string
+            @spendings_in_categories << temp
+          else
+            string="{name:'"+c+"',y:"+s.to_f.round(2).to_s+", dataLabels:{enabled:false}}"
+            @spendings_in_categories << string
+          end
       end
+      @months=@months.to_s.html_safe
+      @total_monthly_spendings=@total_monthly_spendings.to_s.html_safe
+      @total_monthly_net_income=@total_monthly_net_income.to_s.html_safe
       @spendings_in_categories=@spendings_in_categories.to_s.html_safe
-    end
+    end   
 end

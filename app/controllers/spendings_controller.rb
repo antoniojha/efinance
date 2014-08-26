@@ -33,7 +33,7 @@ class SpendingsController < ApplicationController
    
     if params[:id]
       @advance_search=AdvanceSearch.find(params[:id])
-      @spendings=@advance_search.transactions.paginate(page:params[:page])
+      @spendings=@advance_search.transactions.where(:user_id=>session[:user_id]).paginate(page:params[:page])
       if @spendings.count>0
         @start_date=@spendings.last.transaction_date_d
         @end_date=@spendings.first.transaction_date_d
