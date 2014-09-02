@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 # This gem is used for rss feed parsing
+gem 'pauldix-feedzirra'
 
+# THis is used for ???
+gem 'iconv'
 
 # Paperclip, used to upload pictures to Amazon S3
 gem 'paperclip'
@@ -12,7 +15,7 @@ gem 'roo'
 
 gem 'aws-sdk'
 gem 'cocaine'
-ruby '1.9.3'
+ruby '2.1.1'
 # use for pagination
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'

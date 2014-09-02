@@ -13,6 +13,7 @@ class ProfilesController < ApplicationController
     else
       @advance_search=AdvanceSearch.new
     end
+    # won't display finance overview unless user enter budget
     if @budget 
       set_overview_params
     end 
@@ -65,7 +66,7 @@ class ProfilesController < ApplicationController
     @budget=RecurBudget.find(params[:id])
     @budget.destroy
     respond_to do |format|
-      format.html {redirect_to profiles_url}
+      format.html {redirect_to profile_url(session[:user_id])}
     end
   end
   def finance_goal
@@ -157,7 +158,7 @@ class ProfilesController < ApplicationController
           @total=@total_monthly_spendings.last.to_f
           @is_default=true
         end
-          if (@total>0 && s/@total >=0.1)
+          if (@total>0 && (s/@total) >=0.1)
             temp=[]
             string="'"+c+"',"+s.to_f.round(2).to_s
             temp << string

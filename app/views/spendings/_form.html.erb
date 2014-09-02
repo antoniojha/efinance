@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="form-group">
   	<div class="field">
     	<%= f.label "Title:" %><br>
     	<%= f.text_field :title, :class=>"form-control" %>
@@ -25,12 +25,11 @@
   	</div>
   	<div class="field">
     	<%= f.label "Transaction Date:" %><i>(m/d/y)</i><br>
-    	<% if @spending.transaction_date%>
- 			<%= f.text_field :transaction_date, :class=>"form-control"%>
- 		<%else%>
- 			<%= f.text_field :transaction_date, :class=>"form-control"%>
- 		<%end%>
- 	</div>
+      <div class="input-group">
+        <%= f.text_field :transaction_date, :class=>"form-control"%>
+      <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
+      </div>
+ 	  </div>
   	<div class="field">
   		<%= f.label "Upload Receipt:"%><br>
   		<%= f.file_field :picture%>
@@ -41,8 +40,8 @@
   		<span class="input-group-addon">$</span> 
 	    	<%= f.text_field :price, :class=>"form-control" %>
   	</div><br>
-  	<div class="actions">
-    	<%= f.submit 'Add Transaction',:class=>"btn btn-primary" %>
-  	</div>
-
+  </div>
+  <div class="actions">
+    <%= f.submit 'Add Transaction',:class=>"btn btn-primary" %>
+  </div>
 <% end %>
