@@ -3,12 +3,9 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-
   before_action :reset_flash_error
   before_action :authorize, except: [:about, :contact, :demo, :home, :blog]
-
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_page
-  
   protected
   # this function is created for temporary use to test out user id feature
     def set_user_id
@@ -31,4 +28,5 @@ class ApplicationController < ActionController::Base
       logger.error "Attempt to access invalid page"
       redirect_to profile_url(session[:username])
     end
+
 end
