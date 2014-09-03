@@ -68,6 +68,6 @@ class TempBudgetPlansController < ApplicationController
       render "temp_budget_plans/redirect"
     end
     def temp_budget_plan_params
-      params.require(:temp_budget_plan).permit(:recur_period, :food_budget, :finance_budget, :shopping_budget, :auto_budget, :entertainment_budget, :other_budget, :alert_send_period).merge(:user_id=>session[:user_id])
+      params.require(:temp_budget_plan).permit(:recur_period, :food_budget_v, :finance_budget_v, :shopping_budget_v, :auto_budget_v, :entertainment_budget_v, :other_budget_v, :alert_send_period).merge(:user_id=>session[:user_id])
     end
 end
