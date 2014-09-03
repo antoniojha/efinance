@@ -54,7 +54,7 @@ class TempBudgetPlansController < ApplicationController
   def destroy
     @temp_budget_plan.destroy
       respond_to do |format|
-      format.html { redirect_to profile_url(session[:user_id]) }
+        format.html { redirect_to profile_url(session[:username]), notice:"budget plan was deleted"}
  
     end
   end
