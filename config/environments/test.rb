@@ -21,7 +21,10 @@ WebFinance::Application.configure do
   config.action_controller.perform_caching = false
 
   # Raise exceptions instead of rendering exception templates.
-  config.action_dispatch.show_exceptions = false
+  # ***this configuration is very important when using rspec testing. If it's set to false and there is a bug
+  #  the test will show internal server error instead of regular test module.  
+  #  refer http://stackoverflow.com/questions/15950677/where-do-i-see-the-reason-of-a-internal-server-error-when-running-rails-reques and https://github.com/jnicklas/capybara/issues/303
+  config.action_dispatch.show_exceptions = true
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
@@ -36,4 +39,16 @@ WebFinance::Application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+    config.action_mailer.default_url_options={:host=>"localhost:3000"}
+  
+  #Set up for Gmail for SMTP
+    config.action_mailer.smtp_settings={
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'gmail.com',
+    enable_starttls_auto: true,
+    authentication: 'plain',
+    user_name: 'antoniojha@gmail.com',
+    password: '6004Aj??'
+  }
 end

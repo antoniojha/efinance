@@ -6,7 +6,7 @@
   		 	</ul>
   		 	<ul class="navbar-nav nav pull-right">
   		 		<li><%=link_to'Quick Demo', demo_path%></li>					
-            	<% if User.find_by(id: session[:user_id])%>
+              <% if User.find_by(id: session[:username])%>
             	<li><%= link_to 'Profile', profile_url(session[:username])%></li>
            		<% end %>
             	<% if User.find_by(id: session[:user_id])%>

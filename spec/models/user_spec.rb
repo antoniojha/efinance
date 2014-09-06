@@ -103,9 +103,9 @@ describe User do
       expect(@user.reload.username).to eq @user.username.downcase
     end
   end
-  describe "when password format is valid" do
+  describe "when password format is invalid" do
     it "should be invalid" do
-      passwords=%w[aaaaaa1- aaaaaaA- AAAAAA1-]
+      passwords=%w[aaaaaa1 aaaaaaA AAAAAA1]
       passwords.each do |invalid_address|
         @user.password=invalid_address
         @user.password_confirmation=invalid_address
@@ -113,5 +113,21 @@ describe User do
       end
     end
   end
-
+  describe "#send confirmation_password" do
+    let(:user){FactoryGirl.create(:user)}
+    it "generates email autentication each time" do
+      user.send_email_confirmation
+      last_token=user.email_confirmation_token
+      user.send_email_confirmation
+      user.email_confirmation_token.should_not eq(last_token)
+    end
+    it "saves the time email confirmation was sent" do
+      user.send_email_confirmation
+      user.reload.email_confirmation_sent_at.should be_present
+    end
+    it "should send email to user" do
+      user.send_email_confirmation
+      last_email.to.should include(user.email)
+    end 
+  end
 end

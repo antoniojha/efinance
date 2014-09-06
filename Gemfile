@@ -48,14 +48,18 @@ group :development,:test do
   if RbConfig::CONFIG['target_os'] =~ /mswin|mingw|cygwin/i
     gem 'wdm', '>= 0.1.0'
   end
-  # the following gems will speed up rspec testing
-  gem 'spork-rails'
-  gem 'guard-spork'
-  gem 'childprocess'
+
 end
 group :test do
   gem 'capybara'
+  gem 'spork', "> 0.9.0.rc"
+  gem 'factory_girl_rails'
   gem 'selenium-webdriver', '2.35.1'
+    # the following gems will speed up rspec testing
+  gem 'spork-rails'
+  gem 'guard-spork'
+  gem 'childprocess'
+  gem 'database_cleaner'
 end
 
 # Used for CSS

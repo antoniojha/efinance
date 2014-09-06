@@ -24,6 +24,10 @@ describe "StaticPages" do
   describe "Login page" do
     before {visit login_path}
     it {should have_content('Login')}
+    it "should have right link" do
+    click_link "New User?"
+    expect(page).to have_content("Sign Up")
+    end
   end
   describe "Demo page" do
     before {visit demo_path}

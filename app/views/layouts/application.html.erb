@@ -33,8 +33,7 @@
 	<div style="height:80%;overflow:scroll; overflow-x:hidden; padding-bottom:0px">
 	
 		<div class="row" style="margin: 0 auto;">
-		<%=@array3%>
-		<%=@sum%>
+
 		<% if session[:username]&&(profile_url(session[:username]).include? request.env['PATH_INFO'])%>
 			<div class="col-md-2" align="left">
 				<%= yield :left%>
