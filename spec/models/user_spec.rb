@@ -123,15 +123,15 @@ describe User do
       user.send_email_confirmation
       last_token=user.email_confirmation_token
       user.send_email_confirmation
-      user.email_confirmation_token.should_not eq(last_token)
+      expect(user.email_confirmation_token).not_to eq(last_token)
     end
     it "saves the time email confirmation was sent" do
       user.send_email_confirmation
-      user.reload.email_confirmation_sent_at.should be_present
+      expect(user.reload.email_confirmation_sent_at).to be_present
     end
     it "should send email to user" do
       user.send_email_confirmation
-      last_email.to.should include (user.email)
+      expect(last_email.to).to include (user.email)
     end 
   end
 end

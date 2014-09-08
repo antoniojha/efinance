@@ -34,7 +34,9 @@ WebFinance::Application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  
+
+  #raises error for deprecation
+  config.active_support.deprecation = :raise
   
   #set up link direction sent out in Mailer
   

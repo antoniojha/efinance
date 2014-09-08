@@ -40,7 +40,8 @@ WebFinance::Application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
     config.action_mailer.default_url_options={:host=>"localhost:3000"}
-  
+  #raises error for deprecation
+  config.active_support.deprecation = :raise
   #Set up for Gmail for SMTP
     config.action_mailer.smtp_settings={
     address: 'smtp.gmail.com',
