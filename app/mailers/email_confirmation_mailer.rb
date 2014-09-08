@@ -1,4 +1,4 @@
-class AlertNotifier < ActionMailer::Base
+class EmailConfirmationMailer < ActionMailer::Base
   default from: "Antonio Jha <antoniojha@gmail.com>"
 
   # Subject can be set in your I18n file at config/locales/en.yml

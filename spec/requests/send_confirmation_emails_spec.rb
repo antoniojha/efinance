@@ -1,20 +1,24 @@
 require 'spec_helper'
 
-describe "SendConfirmationEmails" do
-  before {visit new_user_path}
-  subject {page}
-  it {should have_content('Sign Up')}
-  describe "emails confirmation email when user successfully sign up" do    
-    before do
-    fill_in "Username", :with=>"testing123"
-    fill_in "Email", :with=>"foo@example.com"
-    fill_in "Password", :with=>"SecretPassword1?"
-    fill_in "Password confirmation", :with=>"SecretPassword1?"
-     
+describe "Users Signup Login and Logoff" do
+  describe "signup" do
+    before {visit signup_path}
+    subject {page}
+    it {should have_content('Sign Up')}
+    describe "emails confirmation email when user successfully sign up" do   
+      user= FactoryGirl.create(:user)
+      before do
+        
+        fill_in "Username", :with=>user.username
+        fill_in "Email", :with=>user.email
+        fill_in "Password", :with=>user.password
+        fill_in "Password confirmation", :with=>user.password 
+      end
+      it "should have content" do
+        click_button "Create Account"
+        expect(page).to have_content('Email Confirmation')
+        last_email.to.should include(user.email)
+      end
     end
-   # click_button "Create Account"
-  #  find('input[type="submit"]').first.click
-  #   it {should have_content('Email Confirmation')}
-
-  end
+end
 end

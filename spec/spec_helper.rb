@@ -83,8 +83,7 @@ require 'capybara/rspec'
         config.include Capybara::DSL, :type=>:request
       #empty email list at the beginning of rspec
       config.include(MailerMacros)
-      config.before(:each){reset_email}  
- 
+      config.before(:each){reset_email}   
     end
   end
 

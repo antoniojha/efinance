@@ -48,7 +48,6 @@ class RecurBudgetsController < ApplicationController
         
         set_budget_display
         format.js {@category=@budget.category} # pass in category to identify where to place current item id to create highlight effect
-        AlertNotifier.alert.deliver
         format.json { render action: 'show', status: :created, location: @budget }
       else
         flash[:error]= @budget.errors.full_messages

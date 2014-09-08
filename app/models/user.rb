@@ -17,14 +17,14 @@ class User < ActiveRecord::Base
   
   #ensure all email address are saved lower case
   before_save{self.email=email.downcase}
-  #ensure all email address are saved lower case
+  #ensure all username address are saved lower case
   before_save{self.username=username.downcase}  
   
   def send_email_confirmation
     generate_token(:email_confirmation_token)
     self.email_confirmation_sent_at=Time.zone.now
     save!
-    AlertNotifier.send_email_confirm(self).deliver
+    EmailConfirmationMailer.send_email_confirm(self).deliver
   end
   def generate_token(column)
     begin

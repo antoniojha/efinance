@@ -39,8 +39,8 @@ group :development,:test do
 
   gem 'rconsole', '~> 0.1.0'
   gem 'sqlite3'
-  gem 'rspec-rails','2.13.1'
-  gem 'guard-rspec','2.5.0'
+  gem 'rspec-rails','~>3.0.0'
+  gem 'guard-rspec'
   #Use thin as the server as mongrel is outdated with Ruby v1.9.3
   #gem 'thin'
   #Please add the following to your Gemfile to avoid polling for changes:
