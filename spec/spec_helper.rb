@@ -1,7 +1,7 @@
-
 require 'rubygems'
 require 'spork'
 require 'capybara/rspec'
+
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
@@ -67,8 +67,9 @@ require 'capybara/rspec'
 
       # If you're not using ActiveRecord, or you'd prefer not to run each of your
       # examples within a transaction, remove the following line or assign false
-      # instead of true.
-      config.use_transactional_fixtures = true
+      # instead of true.  
+        # Assign false for database_cleaner to work source:http://devblog.avdi.org/2012/08/31/configuring-database_cleaner-with-rails-rspec-capybara-and-selenium/
+        config.use_transactional_fixtures = false
 
       # If true, the base class of anonymous controllers will be inferred
       # automatically. This will be the default behavior in future versions of
@@ -81,11 +82,28 @@ require 'capybara/rspec'
       #     --seed 1234
       config.order = "random"
   
-        # Adding Capybara DSL to the RSpec helper file. Enable Capybara's helpers inside spec/requests
-        config.include Capybara::DSL, :type=>:request
+        # Adding Capybara DSL to the RSpec helper file. Enable Capybara's helpers inside spec/
+        config.include Capybara::DSL# You can limit which folder for rspec helper to work by adding (ex:requests folder) :type=>:request
       #empty email list at the beginning of rspec
       config.include(MailerMacros)
       config.before(:each){reset_email}   
+        # configuration for Database Cleaner  
+
+      config.before(:suite) do
+        DatabaseCleaner.strategy = :transaction
+      end
+
+      config.before(:each, :js => true) do
+        DatabaseCleaner.strategy = :truncation
+      end
+
+      config.before(:each) do
+        DatabaseCleaner.start
+      end
+
+      config.after(:each) do
+        DatabaseCleaner.clean
+      end
     end
   end
 
