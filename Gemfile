@@ -52,6 +52,7 @@ group :development,:test do
 end
 group :test do
   gem 'capybara'
+  gem 'launchy'
   gem 'spork', "> 0.9.0.rc"
   gem 'factory_girl_rails'
   gem 'selenium-webdriver', '2.35.1'

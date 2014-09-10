@@ -49,7 +49,7 @@ class ProfilesController < ApplicationController
     
     # check to see if an entry has been saved today
     @today=Date.today
-    @last_trans=Spending.first(:order=>'transaction_date_d DESC')
+    @last_trans=Spending.first
     if @last_trans
       if @last_trans.transaction_date_d
         if (@today > @last_trans.transaction_date_d)

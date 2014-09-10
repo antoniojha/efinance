@@ -45,7 +45,7 @@
 			<div class="col-md-2" align="left">
 				<%= yield :right%>
 			</div>
-		<% elsif controller.controller_name=="users"%>
+      <% elsif controller.controller_name=="users" || controller.controller_name=="email_confirmation"%>
 			<div class="col-md-12" align="center">
 				
 				<%= yield %>
