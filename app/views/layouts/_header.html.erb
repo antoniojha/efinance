@@ -6,16 +6,16 @@
   		 	</ul>
   		 	<ul class="navbar-nav nav pull-right">
   		 		<li><%=link_to'Quick Demo', demo_path%></li>	
-          <%if session[:user_id]%>
-          <%if User.find_by(id: session[:username])%>
+          <%if session[:username]%>
+          <%if User.find_by_username(session[:username])%>
             	<li><%= link_to 'Profile', profile_url(session[:username])%></li>
+            <% end %>
           <% end %>
-          <% end %>
-              <% if session[:username]%>
-                <%if User.find_by_username( session[:username])%>
-            	    <li><%= link_to 'Sign Out', logout_url, method: :delete%></li>
-                <%end%>
-              <%else%>
+          <% if session[:username]%>
+            <%if User.find_by_username( session[:username])%>
+               <li><%= link_to 'Sign Out', logout_url, method: :delete%></li>
+            <%end%>
+          <%else%>
             	  <li><%= link_to 'Sign In', login_url%></li>
               <%end%>
          </ul>
