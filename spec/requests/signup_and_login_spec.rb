@@ -47,7 +47,7 @@ describe "Users Signup Login and Logoff" do
     end
     it "should sign in" do  
       click_button "Login"
-      expect(page).to have_content('Invalid user')
+      expect(page).to have_content('Hello')
     end
   end
 end
