@@ -1,4 +1,4 @@
-class TempBudgetPlans< ActiveRecord::Migration
+class CreateTempBudgetPlans< ActiveRecord::Migration
   def change
     if !table_exists?("temp_budget_plans")  
       create_table :temp_budget_plans do |t|

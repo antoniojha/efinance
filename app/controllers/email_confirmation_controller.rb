@@ -4,12 +4,12 @@ class EmailConfirmationController < ApplicationController
   end
   def edit
     @user=User.find_by_email_confirmation_token(params[:id])
-    if @user.email_authen
+    if @user and @user.email_authen
       session[:username]=@user.username
       redirect_to profile_url(session[:username]), notice: "Email already authenticated!"
     else
       if(!@user)
-        redirect_to profile_url(session[:username]), notice: "Email authentication didn't go through, try again!"
+        redirect_to login_url, alert: "Email authentication didn't go through, try again!"
       else
         @user.email_authen=true
         if @user.save

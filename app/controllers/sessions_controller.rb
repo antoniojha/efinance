@@ -5,19 +5,19 @@ class SessionsController < ApplicationController
 
   def create
     #@user2=User.find_by(username: params[:username])
-    user=User.find_by(username: params[:username])
-    @user2=user
+    @user=User.find_by(username: params[:username])
+    
     respond_to do |format|
-      if user && user.authenticate(params[:password])
-        if user.email_authen==true
-          session[:auth_token]=user.auth_token
-          session[:user_id]=user.id
-          session[:username]=user.username
-          format.html { redirect_to profile_url(user.username)}
+      if @user && @user.authenticate(params[:password])
+        if @user.email_authen==true
+          session[:auth_token]=@user.auth_token
+          session[:user_id]=@user.id
+          session[:username]=@user.username
+          format.html { redirect_to profile_url(@user.username)}
         else
           #  resend email confirmation with a new token if user try to sign in without first authenticating email during sign up
-          session[:user_id]=user.id
-          user.send_email_confirmation
+          session[:user_id]=@user.id
+          @user.send_email_confirmation
           format.html { redirect_to confirmation_url}
         end
       else

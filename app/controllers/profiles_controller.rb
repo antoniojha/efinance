@@ -154,7 +154,7 @@ class ProfilesController < ApplicationController
           @total=spending_temp.sum(&:price)*(-1)
           @is_default=false
         else
-          s=Spending.where("transaction_date_d > ? and category LIKE ? and price <?", this_month_begin, c,0).sum(&:price)*(-1)
+          s=Spending.where("transaction_date_d > ? and category LIKE ? and price <?", this_month_begin, c,0).sum(:price)*(-1)
           @total=@total_monthly_spendings.last.to_f
           @is_default=true
         end

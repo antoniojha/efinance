@@ -9,6 +9,11 @@ describe User do
     it {should respond_to(:password)}
     it {should respond_to(:password_confirmation)}
     it {should be_valid}
+    describe "email_confirmation token" do
+      before{@user.save}
+      it{expect(@user.email_confirmation_token).should_not be_blank}
+      it{expect(@user.email_confirmation_sent_at).should_not be_blank}
+    end
     describe "test when name is not entered" do
       before {@user.username=" "}
       it {should_not be_valid}

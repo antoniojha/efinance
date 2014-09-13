@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140813235744) do
+ActiveRecord::Schema.define(version: 20140913181527) do
 
   create_table "advance_searches", force: true do |t|
     t.string   "keyword"
@@ -24,60 +24,6 @@ ActiveRecord::Schema.define(version: 20140813235744) do
     t.string   "hidden_value"
   end
 
-  create_table "budget_plans", force: true do |t|
-    t.decimal  "budget_amount",        precision: 8, scale: 2
-    t.datetime "deadline"
-    t.integer  "recur_period"
-    t.decimal  "salary",               precision: 8, scale: 2
-    t.decimal  "food_budget",          precision: 8, scale: 2
-    t.decimal  "finance_budget",       precision: 8, scale: 2
-    t.decimal  "shopping_budget",      precision: 8, scale: 2
-    t.decimal  "auto_budget",          precision: 8, scale: 2
-    t.decimal  "entertainment_budget", precision: 8, scale: 2
-    t.decimal  "other_budget",         precision: 8, scale: 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-    t.boolean  "alert"
-  end
-
-  create_table "cart_tests", force: true do |t|
-  end
-
-  create_table "finance_items", force: true do |t|
-    t.integer  "goal_id"
-    t.integer  "temp_item_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "finance_plan_id"
-    t.text     "description"
-  end
-
-  add_index "finance_items", ["finance_plan_id"], name: "index_finance_items_on_finance_plan_id"
-  add_index "finance_items", ["goal_id"], name: "index_finance_items_on_goal_id"
-  add_index "finance_items", ["temp_item_id"], name: "index_finance_items_on_temp_item_id"
-
-  create_table "finance_plans", force: true do |t|
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.time     "maturity_date"
-    t.integer  "recur_period"
-    t.decimal  "amount"
-    t.boolean  "budget_plan"
-    t.boolean  "protection_plan"
-    t.boolean  "emergency_plan"
-    t.boolean  "college_plan"
-    t.boolean  "retirement_plan"
-    t.boolean  "investment_plan"
-  end
-
-  create_table "goals", force: true do |t|
-    t.text     "goal"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "recur_budgets", force: true do |t|
     t.string   "title"
     t.decimal  "price"
@@ -85,6 +31,8 @@ ActiveRecord::Schema.define(version: 20140813235744) do
     t.string   "category"
     t.integer  "temp_budget_plan_id"
     t.boolean  "begin_or_end_of_month"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "spendings", force: true do |t|
@@ -121,11 +69,6 @@ ActiveRecord::Schema.define(version: 20140813235744) do
     t.integer  "user_id"
   end
 
-  create_table "temp_items", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "transaction_imports", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -135,9 +78,9 @@ ActiveRecord::Schema.define(version: 20140813235744) do
     t.string   "username"
     t.string   "email"
     t.string   "password_digest"
+    t.boolean  "email_authen"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "email_authen"
     t.string   "auth_token"
     t.string   "email_confirmation_token"
     t.datetime "email_confirmation_sent_at"
