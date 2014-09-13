@@ -84,8 +84,8 @@ WebFinance::Application.configure do
     domain: 'gmail.com',
     enable_starttls_auto: true,
     authentication: 'plain',
-    user_name: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_PASSWORD']
+    user_name: 'antoniojha@gmail.com',
+    password: '6004Aj??'
   }
   # Force all access to the app over SSL, use Strict-Transport-Security,
   # and use secure cookies.

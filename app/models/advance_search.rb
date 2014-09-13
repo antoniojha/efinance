@@ -3,10 +3,11 @@ class AdvanceSearch < ActiveRecord::Base
   def transactions
     @transactions||=find_transactions
   end
-  # Start Date
+  # Start Date getter
   def start_date_string
     start_date.strftime("%m/%d/%Y") unless start_date.blank?
   end
+  #setter
   def start_date_string=(start_date_str)
     self.start_date=Date.strptime(start_date_str,'%m/%d/%Y')
   rescue ArgumentError

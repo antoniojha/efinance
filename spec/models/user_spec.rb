@@ -1,6 +1,5 @@
 require 'spec_helper'
 describe User do
-  if false
   describe "Creating User" do
     before { @user=User.new(username:"Example User", email:"example@example.com", password: "Example_password12?", password_confirmation: "Example_password12?")}
     subject {@user}
@@ -70,6 +69,14 @@ describe User do
       before {@user.password="A!1"+"a"*3} #less than 7
       it {should_not be_valid}
     end
+    describe "when email address with uppercase is saved already" do
+      before do
+        user_with_same_email=@user.dup
+        user_with_same_email.email=@user.email.upcase
+        user_with_same_email.save
+      end
+      it  {should_not be_valid}
+    end
     describe "when email format is valid" do
       it "should be valid" do
         addresses=%w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
@@ -116,7 +123,7 @@ describe User do
       end
     end
   end
-  end
+  
   describe "#send confirmation_password" do
     let(:user){FactoryGirl.create(:user)}
     it "generates email autentication each time" do
