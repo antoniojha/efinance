@@ -1,8 +1,11 @@
+<% if @user2%>
+<%=@user2.username%>
+<%end%>
 <h1>Login to WebFinance</h1>
 <% if flash[:alert]%>
 <p id="notice"><%=flash[:alert]%>
 <%end%>	
-<%= form_tag do%>
+  <%= form_tag signin_path, :method=>'get' do%>
 	
 	<table width="50%">
 		<tr>

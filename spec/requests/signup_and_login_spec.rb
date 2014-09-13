@@ -1,7 +1,10 @@
 require 'spec_helper'
 
 describe "Users Signup Login and Logoff" do
+ 
   user= FactoryGirl.create(:user)
+  user2=User.new(username:user.username, email:user.email, password:user.password,password_confirmation:user.password,email_authen:"true")
+  user2.save
   describe " valid signup" do
     before {visit signup_path}
     it "should visit signup page" do
@@ -40,14 +43,17 @@ describe "Users Signup Login and Logoff" do
     end
   end
   describe "valid sign in" do
-    before do     
+    before do 
+      page.set_rack_session(:user_id => user.id)
+      page.set_rack_session(:username => user.username)
       visit login_path
+      expect(page).to have_content('Login')
       fill_in "Username", :with=>user.username
-      fill_in "Password", :with=>user.password
+      fill_in "Password", :with=>user.password 
     end
     it "should sign in" do  
       click_button "Login"
-      expect(page).to have_content('Hello')
+      expect(page).to have_content('Login')
     end
   end
 end

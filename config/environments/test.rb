@@ -52,4 +52,6 @@ WebFinance::Application.configure do
     user_name: 'antoniojha@gmail.com',
     password: '6004Aj??'
   }
+  #configuration that allows rack_session_access to set session variable in rspec
+  config.middleware.use RackSessionAccess::Middleware
 end

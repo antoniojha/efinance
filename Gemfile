@@ -61,6 +61,7 @@ group :test do
   gem 'guard-spork'
   gem 'childprocess'
   gem 'database_cleaner'
+  gem "rack_session_access"
 end
 
 # Used for CSS

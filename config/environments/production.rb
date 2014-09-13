@@ -74,7 +74,7 @@ WebFinance::Application.configure do
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
-
+  config.action_mailer.default_url_options={:host=>"localhost:3000"}
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
     #Set up for Gmail for SMTP
@@ -87,4 +87,7 @@ WebFinance::Application.configure do
     user_name: ENV['GMAIL_USERNAME'],
     password: ENV['GMAIL_PASSWORD']
   }
+  # Force all access to the app over SSL, use Strict-Transport-Security,
+  # and use secure cookies.
+  config.force_ssl = true
 end

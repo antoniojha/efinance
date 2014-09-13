@@ -26,6 +26,7 @@
   </style>
 </head>
 <body>
+  
 <div style="height:100%">
 	<header height="50%" class="navbar-default navbar-inverse navbar-static-top" role="navigation">    	         
 		<%=render 'layouts/header'%>       
@@ -33,7 +34,7 @@
 	<div style="height:80%;overflow:scroll; overflow-x:hidden; padding-bottom:0px">
 	
 		<div class="row" style="margin: 0 auto;">
-
+    
 		<% if session[:username]&&(profile_url(session[:username]).include? request.env['PATH_INFO'])%>
 			<div class="col-md-2" align="left">
 				<%= yield :left%>
