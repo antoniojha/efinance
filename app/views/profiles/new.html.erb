@@ -1,6 +1,7 @@
 
 <%year= Date.current.strftime('%Y')%>
 <%month= Date.current.strftime('%b')%>
+<%if false%>
 <script type="text/javascript" charset="utf-8">
   <% if @total_monthly_spendings%>
   $(function () {
@@ -86,7 +87,9 @@
       series: [{
             name: '% Spending',
             innerSize: '50%',
+            <% if @spendings_in_categories.delete!'"')!=nil%>
             data: <%=(@spendings_in_categories.delete!'"').html_safe%>
+            <%end%>
         }]
     });
     <%end%>
@@ -160,3 +163,5 @@
     <%=button_to 'Create Budget!', new_temp_budget_plan_path, {:class=>"btn btn-primary btn-lg", :method=>'get'}%>
   </div> 
 <%end%>
+
+  <%end%>
