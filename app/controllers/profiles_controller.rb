@@ -80,32 +80,32 @@ class ProfilesController < ApplicationController
     def set_overview_params
       current_month_begin=Date.current.beginning_of_month
       current_month_spendings=Spending.where("transaction_date_d > ?", current_month_begin)
-      @spending_food=current_month_spendings.where("category LIKE 'food budget' AND user_id LIKE ?",session[:user_id]).sum(:price)
+      @spending_food=current_month_spendings.where("category = 'food budget' AND user_id = ?",session[:user_id]).sum(:price)
       @spending_food_p=@spending_food/@budget.food_budget*100
       @spendings_p << @spending_food_p
       @spendings << @spending_food
       @budgets << @budget.food_budget
-@spending_finance=current_month_spendings.where("category LIKE 'finance budget' AND user_id LIKE ?",session[:user_id]).sum(:price)
+@spending_finance=current_month_spendings.where("category = 'finance budget' AND user_id = ?",session[:user_id]).sum(:price)
       @spending_finance_p=@spending_finance/@budget.finance_budget*100
       @spendings_p << @spending_finance_p
       @spendings << @spending_finance
       @budgets << @budget.finance_budget
-      @spending_shopping=current_month_spendings.where("category LIKE 'shopping budget' AND user_id LIKE ?",session[:user_id]).sum(:price)
+      @spending_shopping=current_month_spendings.where("category = 'shopping budget' AND user_id = ?",session[:user_id]).sum(:price)
       @spending_shopping_p=@spending_shopping/@budget.shopping_budget*100
       @spendings_p << @spending_shopping_p
       @spendings << @spending_shopping
       @budgets << @budget.shopping_budget
-      @spending_auto=current_month_spendings.where("category LIKE 'auto budget' AND user_id LIKE ?",session[:user_id]).sum(:price)
+      @spending_auto=current_month_spendings.where("category = 'auto budget' AND user_id = ?",session[:user_id]).sum(:price)
       @spending_auto_p=@spending_auto/@budget.auto_budget*100
       @spendings_p << @spending_auto_p    
       @spendings << @spending_auto
       @budgets << @budget.auto_budget
-@spending_entertainment=current_month_spendings.where("category LIKE 'entertainment budget' AND user_id LIKE ?",session[:user_id]).sum(:price)
+      @spending_entertainment=current_month_spendings.where("category = 'entertainment budget' AND user_id = ?",session[:user_id]).sum(:price)
       @spending_entertainment_p=@spending_entertainment/@budget.entertainment_budget*100
       @spendings << @spending_entertainment
       @spendings_p << @spending_entertainment_p
       @budgets << @budget.entertainment_budget
-@spending_other=current_month_spendings.where("category LIKE 'other budget' AND user_id LIKE ?",session[:user_id]).sum(:price)
+@spending_other=current_month_spendings.where("category = 'other budget' AND user_id = ?",session[:user_id]).sum(:price)
       @spending_other_p=@spending_other/@budget.other_budget*100
       @spendings_p << @spending_other_p
       @spendings << @spending_other
@@ -150,11 +150,11 @@ class ProfilesController < ApplicationController
       categories.each do |c|
         temp=[]
         if params[:id]
-          s=spending_temp.where("category LIKE?",c).sum(:price)*(-1)
+          s=spending_temp.where("category = ?",c).sum(:price)*(-1)
           @total=spending_temp.sum(:price)*(-1)
           @is_default=false
         else
-          s=Spending.where("transaction_date_d > ? and category LIKE ? and price <?", this_month_begin, c,0).sum(:price)*(-1)
+          s=Spending.where("transaction_date_d > ? and category = ? and price <?", this_month_begin, c,0).sum(:price)*(-1)
           @total=@total_monthly_spendings.last.to_f
           @is_default=true
         end

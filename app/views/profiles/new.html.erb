@@ -132,9 +132,16 @@
 	<div id="net_income_chart" style="width: 600px; height: auto;"></div>
 </div>
 <% if params[:id]%>
+  
 <div id="spending_breakdown">
+  <% if @advance_search%>
+  <h3> Spending from <%=@advance_search.start_date.strftime('%B, %Y')%> to <%=@advance_search.end_date.strftime('%B, %Y')%>  </h3>  
+  <%else %>
+    <h3> Spending in <%=Date.current.strftime('%B, %Y')%> </h3>  
+  <%end%>
 <%else%>
 <div id="spending_breakdown" class="non_display">
+  <h3> Spending in <%=Date.current.strftime('%B, %Y')%> </h3>
 <%end%>
 	<br>
   <% if @total %>

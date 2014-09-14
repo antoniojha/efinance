@@ -40,8 +40,8 @@ WebFinance::Application.configure do
   
   #set up link direction sent out in Mailer
   
-  config.action_mailer.default_url_options={:host=>"localhost:3000"}
-  
+ # config.action_mailer.default_url_options={:host=>"localhost:3000"}
+  config.action_mailer.default_url_options={:host=>"carbon-ogre-21-142398.use1-2.nitrousbox.com"}
   #Set up for Gmail for SMTP
     config.action_mailer.smtp_settings={
     address: 'smtp.gmail.com',

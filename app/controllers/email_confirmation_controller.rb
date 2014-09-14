@@ -14,7 +14,7 @@ class EmailConfirmationController < ApplicationController
         @user.email_authen=true
         if @user.save
           session[:username]=@user.username
-          flash[:notice]="Email is now authenticated!"
+          redirect_to profile_url(session[:username]), notice: "Email is now authenticated!"
         else
           flash[:notice]="There is an error during the process, please try again later."
         end  
