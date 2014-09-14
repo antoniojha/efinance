@@ -2,7 +2,7 @@ require 'rubygems'
 require 'spork'
 require 'capybara/rspec'
 require 'rack_session_access/capybara'
-
+require 'factory_girl_rails'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 

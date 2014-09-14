@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
           format.html { redirect_to confirmation_url}
         end
       else
-        flash.now[:alert]="Invalid user/password combination"
+        flash.now[:notice]="Invalid user/password combination"
         format.html {  render 'new'}
       end
     end
@@ -30,6 +30,6 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id]=nil
     session[:username]=nil
-    redirect_to login_url, notice: "Logged out"
+    redirect_to login_url, notice: "Logged Out"
   end
 end

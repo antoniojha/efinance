@@ -1,8 +1,6 @@
 
 <h1>Login to WebFinance</h1>
-<% if flash[:alert]%>
-<p id="notice"><%=flash[:alert]%>
-<%end%>	
+<p id="notice"><%=flash[:notice]%></p>
   <%= form_tag signin_path, :method=>'get' do%>
 	
 	<table width="50%">

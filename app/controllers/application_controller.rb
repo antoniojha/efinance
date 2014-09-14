@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :reset_flash_error
-  before_action :authorize, except: [:about, :contact, :demo, :home, :blog]
+  before_action :authorize, except: [:about, :contact, :demo, :home, :blog, :faq]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_page
   protected
   # this function is created for temporary use to test out user id feature

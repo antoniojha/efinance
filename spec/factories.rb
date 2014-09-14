@@ -4,6 +4,5 @@ FactoryGirl.define do
     email  "foo@example.com"
     password "SecretPassword1?"
     password_confirmation "SecretPassword1?"
-    email_authen "true"
   end
 end  
