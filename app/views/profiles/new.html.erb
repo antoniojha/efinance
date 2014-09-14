@@ -23,7 +23,7 @@
   });
   <%end%>
   <!-- This is monthly net income-->
-  <% if @total_monthly_net_income.delete!'"'!=nil %>
+  <% if (@total_monthly_net_income.delete!'"')!=nil %>
   $(function () {
     new Highcharts.Chart({
       chart: { renderTo: 'net_income_chart' ,
