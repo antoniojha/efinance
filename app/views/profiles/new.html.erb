@@ -1,8 +1,6 @@
 
 <%year= Date.current.strftime('%Y')%>
 <%month= Date.current.strftime('%b')%>
-<%= @total_monthly_net_income %><br>
-<%= (@total_monthly_net_income.delete!'"').html_safe %>
 <script type="text/javascript" charset="utf-8">
   <% if @total_monthly_spendings%>
   $(function () {
@@ -25,7 +23,7 @@
   });
   <%end%>
   <!-- This is monthly net income-->
-  <% if (@total_monthly_net_income.delete!'"')!=nil %>
+  <% if (@total_monthly_net_income) %>
   $(function () {
     new Highcharts.Chart({
       chart: { renderTo: 'net_income_chart' ,
@@ -88,7 +86,7 @@
       series: [{
             name: '% Spending',
             innerSize: '50%',
-            <% if @spendings_in_categories.delete!'"')!=nil%>
+            <% if (@spendings_in_categories)%>
             data: <%=(@spendings_in_categories.delete!'"').html_safe%>
             <%end%>
         }]
@@ -164,4 +162,5 @@
     <%=button_to 'Create Budget!', new_temp_budget_plan_path, {:class=>"btn btn-primary btn-lg", :method=>'get'}%>
   </div> 
 <%end%>
+
 

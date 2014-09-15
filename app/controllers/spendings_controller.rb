@@ -21,7 +21,9 @@ class SpendingsController < ApplicationController
       @spendings=Spending.find_spendings(@start_date,session[:user_id]).paginate(page:params[:page])   
     else
       @spendings=Spending.all.where(:user_id=>session[:user_id]).paginate(page:params[:page])
+      if (@spendings.last)
       @start_date=@spendings.last.transaction_date_d
+      end
     end
     # in case that user hasn't input anything in the specified period.
     if (@spendings!=nil &&@spendings.count>0)
