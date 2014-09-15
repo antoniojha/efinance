@@ -73,7 +73,7 @@ group :production do
   # refer to Michael Hurtl chapter 1.4.1 and 2
   gem 'pg'#PostgreSQL
   gem 'rails_12factor' #used by Heroku to serve static assets such as images and stylesheets.
-  gem 'sprockets_better_errors''
+  gem 'sprockets_better_errors'
 
 end
 
