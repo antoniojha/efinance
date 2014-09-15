@@ -49,6 +49,7 @@ function ready() {
 		  }
 	});
 	$('#chart_tab a').click(function (e) {
+      alert("it works!")
 		  e.preventDefault();
 		  $(this).tab('show');
 		  var form_activated='#'+$(this).attr('href').slice(1);
