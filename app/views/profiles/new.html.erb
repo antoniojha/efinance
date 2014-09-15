@@ -2,4 +2,4 @@
 <%year= Date.current.strftime('%Y')%>
 <%month= Date.current.strftime('%b')%>
 <%= @total_monthly_net_income %>
-
+<%= @total_monthly_net_income.delete!'"' %>
