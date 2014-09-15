@@ -25,6 +25,6 @@ module WebFinance
     
     config.generators.test_framework :test_unit, fixture: true
     config.secret_key_base= YAML.load(File.open("#{Rails.root}/config/secrets.yml"))[Rails.env]['secret_key_base']
-    
+    config.serve_static_assets = true
   end
 end
