@@ -1,0 +1,28 @@
+/* line 5, /home/action/workspace/efinance/app/assets/stylesheets/profiles.css.scss */
+.non_display {
+  display: none;
+}
+
+/* line 10, /home/action/workspace/efinance/app/assets/stylesheets/profiles.css.scss */
+.display {
+  width: 500px;
+  height: 200px;
+}
+
+/* line 15, /home/action/workspace/efinance/app/assets/stylesheets/profiles.css.scss */
+.table_property td {
+  padding: 10px;
+}
+
+/* line 19, /home/action/workspace/efinance/app/assets/stylesheets/profiles.css.scss */
+.progress {
+  position: relative;
+}
+
+/* line 23, /home/action/workspace/efinance/app/assets/stylesheets/profiles.css.scss */
+.progress span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  color: black;
+}

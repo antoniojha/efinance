@@ -1,0 +1,15 @@
+/* line 5, /home/action/workspace/efinance/app/assets/stylesheets/budgets.css.scss */
+#display_budgets {
+  text-align: center;
+}
+
+/* line 9, /home/action/workspace/efinance/app/assets/stylesheets/budgets.css.scss */
+#budget_form_table {
+  table-layout: fixed;
+}
+
+/* line 13, /home/action/workspace/efinance/app/assets/stylesheets/budgets.css.scss */
+#budget_form_row {
+  word-wrap: break-word;
+  max-width: 150px;
+}

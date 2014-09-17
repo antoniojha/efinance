@@ -1,0 +1,15 @@
+/* line 6, /home/action/workspace/efinance/app/assets/stylesheets/users.css.scss */
+.blank_row {
+  height: 20px;
+}
+
+/* line 11, /home/action/workspace/efinance/app/assets/stylesheets/users.css.scss */
+#password_description {
+  display: none;
+}
+
+/* line 15, /home/action/workspace/efinance/app/assets/stylesheets/users.css.scss */
+.back_link {
+  position: relative;
+  right: 20px;
+}
