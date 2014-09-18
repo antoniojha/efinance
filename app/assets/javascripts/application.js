@@ -20,7 +20,9 @@
 
 $(document).on('page:load',ready);
 $(document).ready(ready);
+
 function ready() {
+  alert("javascript is working");
 	$('#recur_budget_begin_or_end_of_month_1').click(function(){
 		$('#budget_transaction_date').attr('disabled','disabled');
 	});// disable the text box for date input of the recur_budget/new form if selected	
