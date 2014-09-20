@@ -24,10 +24,11 @@ module WebFinance
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-  #  config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif) #line for asset pipeline compatibility
+   # config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif) #line for asset pipeline compatibility
     
     config.generators.test_framework :test_unit, fixture: true
     config.secret_key_base= YAML.load(File.open("#{Rails.root}/config/secrets.yml"))[Rails.env]['secret_key_base']
-    config.serve_static_assets = false
+    config.serve_static_assets = true
+    #config.assets.paths << "#{Rails}/vendor/assets/fonts"
   end
 end
