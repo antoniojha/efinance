@@ -1,5 +1,5 @@
-if false
-Rails.application.config.assets.precompile += %w( jquery-ui-1.10.4.custom.js )
+
+#Rails.application.config.assets.precompile += %w( jquery-ui-1.10.4.custom.js )
 Rails.application.config.assets.precompile << Proc.new do |path|
   if path =~ /\.(css|js)\z/
     full_path = Rails.application.assets.resolve(path).to_path
@@ -14,5 +14,4 @@ Rails.application.config.assets.precompile << Proc.new do |path|
   else
     false
   end
-end
 end
