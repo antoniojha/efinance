@@ -35,8 +35,10 @@ gem 'jquery-ui-rails'
 gem 'bcrypt-ruby', '3.1.2'
 
 group :development,:test do
+  # shows error for asset-pipeline in production that is usually not shown in developme
+ # gem 'sprockets_better_errors'
   # Use rpsec-rails for development testing
-
+ 
   gem 'rconsole', '~> 0.1.0'
   gem 'sqlite3'
   gem 'rspec-rails','~>3.0.0'
