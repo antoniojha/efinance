@@ -5,7 +5,8 @@ WebFinance::Application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
-
+  #raise error for asset pipeline for production
+  config.assets.raise_production_errors = true
   # Do not eager load code on boot.
   config.eager_load = false
 
@@ -26,6 +27,9 @@ WebFinance::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  
+  # make Sprockets use a different URL for serving assets in development mode and pass all requests to Sprockets.
+  config.assets.prefix="/dev-assets"
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
