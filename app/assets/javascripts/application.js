@@ -20,7 +20,7 @@
 
 //= require_tree ./highchart
 //= require_tree ../../../vendor/assets/javascripts/.
-
+//= require_tree .
 $(document).on('page:load',ready);
 $(document).ready(ready);
 
