@@ -28,10 +28,7 @@ WebFinance::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   
-  # make Sprockets use a different URL for serving assets in development mode and pass all requests to Sprockets.
-  config.assets.prefix="/dev-assets"
-
-  # Adds additional error checking when serving assets at runtime.
+    # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
