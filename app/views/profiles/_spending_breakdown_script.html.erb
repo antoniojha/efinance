@@ -1,0 +1,47 @@
+  <% if (@total && @total >0)%>
+    $(function () {
+    new Highcharts.Chart({
+      chart: { renderTo: 'pie_chart' ,
+      		   type: 'pie'
+      },
+      title: { 
+      	<%if @is_default%>
+      	text: 'Net Spending breakdown in <%=@month%>, <%=@year%>'},
+      	<%else%>
+      	text: 'Customized Net Spending breakdown'},
+      	<%end%>
+      tooltip: {
+                pointFormat: '<b>{point.percentage:.1f}%</b>'
+      },
+      xAxis: { 
+              categories: <%=(@months_str)%>
+      },
+      yAxis: {
+            title: {text: 'Dollars ($)'}
+      },
+        plotOptions: {
+            pie: {
+                dataLabels: {
+                    enabled: true,
+                    distance: -50,
+                    style: {
+                        fontWeight: 'bold',
+                        color: 'white',
+                        textShadow: '0px 1px 2px black'
+                    }
+                },
+                startAngle: -90,
+                endAngle: 90,
+                center: ['50%', '75%']
+            }
+        },
+      series: [{
+            name: '% Spending',
+            innerSize: '50%',
+            <% if (@spendings_in_categories_str.delete!'"')%>
+            data: <%=(@spendings_in_categories_str.delete!'"').html_safe%>
+            <%end%>
+        }]
+    });
+  });
+  <%end%>

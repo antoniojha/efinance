@@ -15,9 +15,8 @@
 //= require jquery-ui/effect-blind
 //= require jquery_ujs
 //= require turbolinks
+// require bootstrap-sprockets <-- this line of code disable bootstrap for some reason.
 //= require bootstrap
-//= require bootstrap-sprockets
-
 //= require_tree ./highchart
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require_tree .
@@ -25,7 +24,7 @@ $(document).on('page:load',ready);
 $(document).ready(ready);
 
 function ready() {
- alert("javascript is working!")
+// alert("javascript is working!")
 	$('#recur_budget_begin_or_end_of_month_1').click(function(){
 		$('#budget_transaction_date').attr('disabled','disabled');
 	});// disable the text box for date input of the recur_budget/new form if selected	

@@ -168,9 +168,11 @@ class ProfilesController < ApplicationController
             @spendings_in_categories << string
           end
       end
-      @months=@months.to_s.html_safe
-      @total_monthly_spendings=@total_monthly_spendings.to_s.html_safe
-      @total_monthly_net_income=@total_monthly_net_income.to_s.html_safe
-      @spendings_in_categories=@spendings_in_categories.to_s.html_safe
+      @months_str=@months.to_s.html_safe
+      @total_monthly_spendings_str=@total_monthly_spendings.to_s.html_safe
+      @total_monthly_net_income_str=@total_monthly_net_income.to_s.html_safe
+      @spendings_in_categories_str=@spendings_in_categories.to_s.html_safe
+      @year= Date.current.strftime('%Y')
+      @month= Date.current.strftime('%b')
     end   
 end

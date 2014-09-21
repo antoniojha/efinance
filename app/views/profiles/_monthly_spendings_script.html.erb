@@ -1,0 +1,20 @@
+  <% if @total_monthly_spendings_str%>
+  $(function () {
+    new Highcharts.Chart({
+      chart: { renderTo: 'spending_chart' ,
+      		   type: 'column'
+      },
+      title: { text: 'Spending in <%=@year%>'},
+      xAxis: { 
+              categories: <%=(@months_str)%>
+      },
+      yAxis: {
+            title: {text: 'Dollars ($)'}
+      },
+      series: [{
+      		name: '<%=session[:username]%>', 
+            data: <%=@total_monthly_spendings_str%>
+        }]
+    });
+  });
+  <%end%>

@@ -1,0 +1,23 @@
+  <% if (@total_monthly_net_income_str.delete!'"') %>
+  $(function () {
+    new Highcharts.Chart({
+      chart: { renderTo: 'net_income_chart' ,
+      		   type: 'column'
+      },
+
+      title: {      			
+      		   text: 'Net Income in <%=@year%>',
+      		   align:'center',
+      },
+      xAxis: { 
+              categories: <%=(@months_str)%>
+      },
+      yAxis: {
+            title: {text: 'Dollars ($)'}
+      },
+      series: [{
+      		name: '<%=session[:username]%>', 
+            data: <%=(@total_monthly_net_income_str.delete!'"').html_safe%>
+        }]
+    });
+    <%end%>
