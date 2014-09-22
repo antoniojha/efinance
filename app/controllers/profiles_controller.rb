@@ -174,5 +174,6 @@ class ProfilesController < ApplicationController
       @spendings_in_categories_str=@spendings_in_categories.to_s.html_safe
       @year= Date.current.strftime('%Y')
       @month= Date.current.strftime('%b')
+      @is_first_time_at_this_page=true
     end   
 end

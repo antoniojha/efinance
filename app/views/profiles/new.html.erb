@@ -5,6 +5,13 @@
   <!-- This is monthly net income-->
   <%=render "monthly_net_income_script"%>
   <%=render "spending_breakdown_script"%>
+    <% if @is_first_time_at_this_page%>
+    $(document).on('page:load',first_time);
+    function first_time(){
+      	$('#monthly_spending').hide();
+	      $('#spending_breakdown').hide();     
+    }
+  <%end%>
 </script>
 <% # this will appear in all the tabs if monthly budget is not inputted %>
 <% if !@budget%>
@@ -28,7 +35,6 @@
       <%=render "spendings/advance_search_form"%>
     </div>
   <%end%>
-
   <% if params[:id]%>
     <% class_available_budget=""%>
     <% class_spending_breakdown="active"%>
@@ -61,21 +67,19 @@
     </div>
   <%end%>
 
-
-  <div id="spending_breakdown">
-    <% if @advance_search.start_date && @advance_search.end_date%>
-      <h3> Spending from <%=@advance_search.start_date.strftime('%B, %Y')%> to <%=@advance_search.end_date.strftime('%B, %Y')%>  </h3>  
-    <%else %>
-      <h3> Spending in <%=Date.current.strftime('%B, %Y')%> </h3>  
-    <%end%>
-
-    <% if @total %>
-      <% if (@total >0)%>
-        <div id="pie_chart" style="width: 600px; height: auto;"></div><br>
-      <%else%>
-        No Transaction were found!
+    <div id="spending_breakdown">
+      <% if @advance_search.start_date && @advance_search.end_date%>
+        <h3> Spending from <%=@advance_search.start_date.strftime('%B, %Y')%> to <%=@advance_search.end_date.strftime('%B, %Y')%>  </h3>  
+      <%else %>
+        <h3> Spending in <%=Date.current.strftime('%B, %Y')%> </h3>  
       <%end%>
-    <%end%>
-  </div><br>
 
+      <% if @total %>
+        <% if (@total >0)%>
+          <div id="pie_chart" style="width: 600px; height: auto;"></div><br>
+        <%else%>
+          No Transaction were found!
+        <%end%>
+      <%end%>
+    </div><br>
 <%end%>
