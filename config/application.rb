@@ -26,10 +26,10 @@ module WebFinance
     # config.i18n.default_locale = :de
    # config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif) #line for asset pipeline compatibility
     
-    config.generators.test_framework :test_unit, fixture: true
+    #config.generators.test_framework :test_unit, fixture: true
     config.secret_key_base= YAML.load(File.open("#{Rails.root}/config/secrets.yml"))[Rails.env]['secret_key_base']
-    config.serve_static_assets = true
-    #config.assets.paths << "#{Rails}/vendor/assets/fonts"
-    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    #config.serve_static_assets = true
+
+    #config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end
