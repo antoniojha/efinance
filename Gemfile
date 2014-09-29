@@ -39,7 +39,7 @@ gem 'bootstrap-sass'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 group :development,:test do
-  # shows error for asset-pipeline in production that is usually not shown in developme
+  # shows error for asset-pipeline in production that is usually not shown in development
  # gem 'sprockets_better_errors'
   # Use rpsec-rails for development testing
  

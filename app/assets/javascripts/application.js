@@ -16,6 +16,8 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+
 $(document).on('page:load',ready);
 $(document).ready(ready);
 
