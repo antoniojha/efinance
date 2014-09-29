@@ -30,5 +30,6 @@ module WebFinance
     config.secret_key_base= YAML.load(File.open("#{Rails.root}/config/secrets.yml"))[Rails.env]['secret_key_base']
     config.serve_static_assets = true
     #config.assets.paths << "#{Rails}/vendor/assets/fonts"
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end
