@@ -10,15 +10,11 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
-//= require jquery-ui-1.10.4.custom
-//= require jquery-ui/effect-blind
 //= require jquery_ujs
 //= require turbolinks
-// require bootstrap-sprockets <-- this line of code disable bootstrap for some reason.
 //= require bootstrap
-//= require_tree ./highchart
-//= require_tree ../../../vendor/assets/javascripts/.
 //= require_tree .
 $(document).on('page:load',ready);
 $(document).ready(ready);
