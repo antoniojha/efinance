@@ -67,20 +67,6 @@ function toggle_chart_menu(id){
 	}
 }
 
-/*function search_form(event){
-	$('#advance_search_form').hide();
-	$('#search_form').show();
-	alert(event.target.parent().nodeName);
-	event.target.parent().attr('class','active');
-	alert("searchform");
-}
-function advance_search_form(event){
-	$('#advance_search_form').show();
-	$('#search_form').hide();
-	alert(event.target.parent().nodeName);
-	event.target.parent().attr('class','active');
-	alert("advance search form");
-}*/
 function show_message(){
 	$('#user_password').focus(function(){
 		$('#password_description').show();
@@ -91,12 +77,3 @@ function show_message(){
 }
 $(document).ready(show_message);
 $(document).on('page:load', show_message);
-
-
-/*$(document).ready(function(){
-	alert("it's ready");
-});
-$(window).bind('beforeunload', function(event) {    
-
-    return false;
-});*/

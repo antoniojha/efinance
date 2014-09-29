@@ -34,6 +34,10 @@ gem 'jquery-ui-rails'
 #Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '3.1.2'
 
+# Used for CSS
+gem 'bootstrap-sass'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 4.0.3'
 group :development,:test do
   # shows error for asset-pipeline in production that is usually not shown in developme
  # gem 'sprockets_better_errors'
@@ -66,10 +70,6 @@ group :test do
   gem "rack_session_access"
 end
 
-# Used for CSS
-gem 'bootstrap-sass'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
 
 group :production do
   # refer to Michael Hurtl chapter 1.4.1 and 2
