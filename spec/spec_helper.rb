@@ -55,6 +55,7 @@ require 'factory_girl_rails'
       RSpec.configure do |config|
         # allow to use path in rspec
         config.include Rails.application.routes.url_helpers
+        
       # ## Mock Framework
       #
       # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
